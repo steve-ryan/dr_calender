@@ -57,14 +57,12 @@
         </main>
     </div>
     <script src="./../assets/js/main.js" type="text/javascript"></script>
-</body>
-
-</html>
-               
-            </div>
-        </main>
-    </div>
     <script src="./../assets/js/main.js" type="text/javascript"></script>
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="./../assets/js/jquery.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="./../assets/js/popper.min.js"></script>
+    <script src="./../assets/js/bootstrap-4.3.1.js"></script>
+</body>
 </body>
 
-</html>

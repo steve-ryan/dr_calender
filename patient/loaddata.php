@@ -35,4 +35,5 @@ session_start();
 
         $stmt->close();
      }
+
 ?>

@@ -10,21 +10,27 @@
             </div>
         </div>
     </header>
-        <aside class="aside ">
+    <aside class="aside ">
 
-            <div class="aside_close-icon">
-                <strong>&times;</strong>
-            </div>
-            <ul class="aside_list">
-                <li class="aside_list-item">Appointment
-                    <ul class="subitem">
-                        <li><a href="./../admin/#">Manage</a></li>
-                        <li><a href="./../admin/#">History</a></li>
-                    </ul>
-                </li>
-            </ul>
+        <div class="aside_close-icon">
+            <strong>&times;</strong>
+        </div>
+        <ul class="aside_list">
+            <li class="aside_list-item">Appointment
+                <ul class="subitem">
+                <li><a href="./../admin/#">Today's appointment</a></li>
+                    <li><a href="./../admin/#">Manage</a></li>
+                    <li><a href="./../admin/#">History</a></li>
+                </ul>
+            </li>
+            <li class="aside_list-item">Schedule timings</li>
+            <li class="aside_list-item">Profile setting</li>
+            <li class="aside_list-item"><a href="./../doctor/changepwd.php">Change password</a></li>
 
-        </aside>
+            <li class="aside_list-item">Logout</li>
+        </ul>
+
+    </aside>
     <script>
 $(document).ready(() => {
     $('.aside_list').on('click', "li", function() {

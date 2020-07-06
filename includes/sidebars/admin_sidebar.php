@@ -3,24 +3,19 @@
     </div>
     <header class="header">
         <div class="header_search">Dr.Calender</div>
-        <div class="header_avatar dropdown">
-            <button class="btn dropdown-toggle" type="button">settings</button>
-            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <a class="dropdown-item" href="#">Logout</a>
-            </div>
-        </div>
+        <div class="header_avatar dropdown"><a href="login.html" class="nav-link logout"> <span class="d-none d-sm-inline">Logout</span><i class="fa fa-sign-out"></i></a></div>
     </header>
     <aside class="aside">
         <div class="aside_close-icon">
             <strong>&times;</strong>
         </div>
         <ul class="aside_list">
-            <li class="aside_list-item"><a href="./../admin/dashboard.php">Home</a></li>
+            <li class="aside_list-item" rel="admin-dash"><a href="./../admin/dashboard.php">Home</a></li>
             <li class="aside_list-item">Doctors
                 <ul class="subitem ">
 
-                    <li><a href="./../admin/add-doctor.php">Add Doctor</a> </li>
-                    <li><a href="./../admin/manage-doctor.php">Manage Doctors</a></li>
+                    <li><a href="./../admin/add-doctor.php" rel="admin-add-doc">Add Doctor</a> </li>
+                    <li><a href="./../admin/manage-doctor.php" rel="admin-mang-doc">Manage Doctors</a></li>
                 </ul>
             </li>
             <li class="aside_list-item">Speciality
@@ -39,11 +34,14 @@
                     <li><a href="./../admin/appointment-history.php">History</a></li>
                 </ul>
             </li>
-            <!-- <li class="aside_list-item">Logout
+            <li class="aside_list-item">Profile
                 <ul class="subitem">
-                    <li><a href="./../admin/logout.php">Logout</a></li>
+                    <li><a href="./../admin/appointment-history.php">Settings</a></li>
+                    <li><a href="./../admin/changepwd.php">Change Password</a></li>
                 </ul>
-            </li> -->
+            </li>
+
+            <li class="aside_list-item"><a href="./../admin/logout.php">Logout</a></li>
 
 
         </ul>

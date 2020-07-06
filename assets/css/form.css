@@ -4,6 +4,13 @@ body {
     font-size: 0.95em;
 }
 
+/* #frmLogin {
+    background-image: url(./../public/images.png);
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 100%;
+} */
+
 .form-head {
     color: #191919;
     font-weight: normal;

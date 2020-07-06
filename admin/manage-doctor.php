@@ -6,6 +6,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./../assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./../assets/css/fontawesome.min.css">
+    <link rel="stylesheet" href="./../assets/css/all.css">
     <link rel="stylesheet" href="./../assets/css/test/styles.css">
     <script src="./../assets/js/jquery.js" type="text/javascript"></script>
 </head>
@@ -23,48 +25,66 @@
                 <div class="card-header"> Dashboard</div>
 
                 <div class="card-body">
-                  
-                   <table class="table table-bordered">
-                       <thead class="table-info">
-                           <tr>
-                               <th scope="col">ID</th>
-                                <th scope="col">First_name</th>
-                            <th scope="col">Last_name</th>
-                            <th scope="col">Email</th>
-                            <th scope="col">Age</th>
-                                 <th colspan="3">ACTIONS</th>
-                           </tr>
-                       </thead>
-                       <tbody>
-                                <tr>
-                                <td>dummy</td>
-                                <td>dummy</td>
-                                <td>dummy</td>
-                                <td>dummy</td>
-                                <td>dummy</td>
-                                <td><a href="#" class="btn btn-warning btn-xs">Suspend</a></td>
-                                <td><a href="#" class="btn btn-danger btn-xs">Delete</a></td>
-                                <td><a href="#" class="btn btn-success btn-xs">Unsuspend</a></td>
-                                </td>
-                            </tr>
-                    
-                            
-                       </tbody>
-                   </table>
+                  <table class="table table-sm table-bordered table-hover">
+                                <thead class="table-success">
+                                    <tr>
+
+                                        <th scope="col">#ID</th>
+                                        <th scope="col">firstname</th>
+                                        <th scope="col">lastname</th>
+                                        <th scope="col">speciality</th>
+                                        <th scope="col">email address</th>
+                                        <!-- <th scope="col">Status</th> -->
+                                        <th scope="col">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="doctor-table">
+
+
+                                </tbody>
+                            </table>
                 </div>
             </div>    
             </div>
         </main>
     </div>
     <script src="./../assets/js/main.js" type="text/javascript"></script>
-</body>
-
-</html>
-               
-            </div>
-        </main>
-    </div>
     <script src="./../assets/js/main.js" type="text/javascript"></script>
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="./../assets/js/jquery.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="./../assets/js/popper.min.js"></script>
+    <script src="./../assets/js/bootstrap-4.3.1.js"></script>
+    <script>
+$(document).ready(function() {
+	$.ajax({
+		url: "view_doctor.php",
+		type: "POST",
+		cache: false,
+		success: function(dataResult){
+			$('#doctor-table').html(dataResult); 
+		}
+	});
+	$(document).on("click", ".delete", function() { 
+		var $ele = $(this).parent().parent();
+		$.ajax({
+			url: "delete_ajax.php",
+			type: "POST",
+			cache: false,
+			data:{
+				doctor_id: $(this).attr("data-id")
+			},
+			success: function(dataResult){
+                console.log("success");
+				var dataResult = JSON.parse(dataResult);
+				if(dataResult.statusCode==200){
+					$ele.fadeOut().remove();
+				}
+			}
+		});
+	});
+});
+</script>
+</body>
 </body>
 
-</html>

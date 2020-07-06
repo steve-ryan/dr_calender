@@ -18,3 +18,8 @@ asideClose.addEventListener("click", function () {
   toggle(aside, "active");
 });
 
+// Disabling past date whenever selecting
+let datevalid = document.getElementById("date");
+datevalid.max = new Date().toISOString().split("T")[0];
+
+
