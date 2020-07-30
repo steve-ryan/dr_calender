@@ -1,10 +1,22 @@
 <?php 
 include "config.php";
 
+if(isset($_POST['submit'])){
+    $name = $_POST['name'];
+    $email = $_POST['email'];
+    $mysqli=new mysqli('localhost','root','','bookingcalender');
+    $stmt=$mysqli->prepare("INSERT INTO bookings(name,email,date)VALUES(?,?,?)");
+    $stmt->bind_param('sss',$name,$email,$date);
+    $stmt->execute();
+    $msg="<div class='alert alert-success'>Booking Successfull</div>";
+    $stmt->close();
+    $mysqli->close();
+}
+
 $duration = 40;
 $cleanup = 15;
 $start = '09:00';
-$end = '21:00';
+$end = '18:00';
 // $day_closed = array("Friday");
 // $day_closed_text = "Closed";
 // lunch break start
@@ -75,122 +87,27 @@ $year = $dt -> format('Y');
         <main class="main">
             <div class="main_overview">
                 <div class="container">
-                    <div class="card">
-                        <div class="card-body ">
-                            <form action="./../routes/admins/add-doc.php" method="post">
-                                <div class="row justify-content-center">
-                                    <div class="col-md-8">
-
-                                        <div class="card">
-                                            <div class="card-header text-center "> Book Appointment</div>
-
-                                            <div class="card-body ">
-
-
-                                                <!-- <form action="./../routes/admins/add-doc.php" method="post"> -->
-                                                <div class="form-row">
-
-                                                    <div class="form-group col-md-6 col-sm-6">
-                                                        <label for="name"><i>Speciality:</i></label>
-                                                        <select name="" class="form-control" id="speciality">
-
-                                                            <option value="0" class="disabled">- Select -</option>
-                                                            <?php 
-                                                            // Fetch Speciality
-                                                            $sql_department = "SELECT * FROM department";
-                                                            $department_data = mysqli_query($con,$sql_department);
-                                                            while($row = mysqli_fetch_assoc($department_data) ){
-                                                            $departid = $row['id'];
-                                                            $depart_name = $row['depart_name'];
-              
-                                                              // Option
-                                                             echo "<option value='".$departid."' >".$depart_name."</option>";
-                                                            }
-                                                              ?>
-                                                        </select>
-                                                    </div>
-                                                    <div class="clear"></div>
-                                                    <div class="form-group col-md-6 col-sm-6">
-                                                        <label for="name"><i>Doctor:</i></label>
-                                                        <select name="" class="form-control" id="doctor">
-                                                            <option value="0">Choose1..</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-
-                                                <!-- <button class="btn btn-primary" type="submit">Submit</button> -->
-                                                <!-- </form> -->
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-
-                                        <div class="card">
-                                            <div class="card-header h-100 no-radius text-center bg-info"> Selecting
-                                                Timeslots
-                                            </div>
-                                            <div class="card-body ">
-                                                <!-- <form action="./../routes/admins/add-doc.php" method="post"> -->
-                                                <div class="form-row">
-
-                                                    <div class="form-group col-md-6 col-sm-6">
-                                                        <label for="name"><strong>Morning:<sup>AM</sup></strong></label>
-                                                        <br />
-                                                        <label for="option">08:40-09:10 </label>
-                                                        <input id="option" type="checkbox" value="">
-                                                        <label for="option">09:20-09:50 </label>
-                                                        <input id="option" type="checkbox" value="">
-
-                                                    </div>
-                                                    <div class="form-group col-md-6 col-sm-6">
-                                                        <label
-                                                            for="name"><strong>Afternoon:<sup>PM</sup></strong></label>
-                                                        <br />
-                                                        <input id="option" type="checkbox" value="">
-                                                        <label for="option">1:10-1:40 </label>
-                                                        <br />
-                                                        <input id="option" type="checkbox" value="">
-                                                        <label for="option">10:00-10:30 </label>
-
-                                                    </div>
-
-                                                </div>
-                                                <!-- </form> -->
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                &nbsp;
-                                <div class="text-center">
-                                    <button class="btn btn-info" type="submit">Check Availability </button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12">
-                        <center>
-                            <h2><?php echo "$month $year"; ?></h2>
-                            <a class="btn btn-primary btn-xs"
-                                href="<?php echo $_SERVER['PHP_SELF'].'?week='.($week-1).'&year='.$year; ?>">Pre
-                                Week</a>
-                            <a class="btn btn-primary btn-xs" href="weekly.php">Current Week</a>
-                            <!--Previous week-->
-                            <a class="btn btn-primary btn-xs"
-                                href="<?php echo $_SERVER['PHP_SELF'].'?week='.($week+1).'&year='.$year; ?>">Next
-                                Week</a>
-                        </center>
-                        <!--Next week-->
-                        <br /><br />
-                        <table>
-                            <tr class="sucess">
-                                <?php
+                    <div class="row">
+                        <div class="col-md-12">
+                            <center>
+                                <h2><?php echo "$month $year"; ?></h2>
+                                <a class="btn btn-primary btn-xs"
+                                    href="<?php echo $_SERVER['PHP_SELF'].'?week='.($week-1).'&year='.$year; ?>">Pre
+                                    Week</a>
+                                <a class="btn btn-primary btn-xs" href="weekly.php">Current Week</a>
+                                <!--Previous week-->
+                                <a class="btn btn-primary btn-xs"
+                                    href="<?php echo $_SERVER['PHP_SELF'].'?week='.($week+1).'&year='.$year; ?>">Next
+                                    Week</a>
+                            </center>
+                            <!--Next week-->
+                            <br /><br />
+                            <table>
+                                <tr class="sucess">
+                                    <?php
 do {
 	if($dt->format('d M Y')==date('d M Y')){
-echo "<td style='background:red'>" . $dt->format('l') . "<br>" . $dt->format('d M Y') . "</td>\n";
+echo "<td style='background:blue'>" . $dt->format('l') . "<br>" . $dt->format('d M Y') . "</td>\n";
 	}else{
 		echo "<td>" . $dt->format('l') . "<br>" . $dt->format('d M Y') . "</td>\n";
 	}
@@ -198,39 +115,86 @@ echo "<td style='background:red'>" . $dt->format('l') . "<br>" . $dt->format('d 
     $dt->modify('+1 day');
 } while ($week == $dt->format('W'));
 ?>
-                            </tr>
-                            <?php $timeslots = timeslots($duration,$cleanup,$start,$end,$break_start,$break_end);
+                                </tr>
+                                <?php $timeslots = timeslots($duration,$cleanup,$start,$end,$break_start,$break_end);
     	foreach ($timeslots as $ts) {
             # code...
             // $tsclosed = echo "Closed";
     	
     	?>
-                            <tr>
+                                <tr>
 
-                                <td><button class="btn-info btn-xs"><?php echo $ts; ?></button>
-                                </td>
-                                <td><button class="btn-info btn-xs"><?php echo $ts; ?></button>
-                                </td>
-                                <td><button class="btn-info btn-xs"><?php echo $ts; ?></button>
-                                </td>
-                                <td><button class="btn-info btn-xs"><?php echo $ts; ?></button>
-                                </td>
-                                <td class="disabled"><button class="btn-danger  disabled"><?php echo "   --Closed--"; ?></button>
-                                </td>
-                                <td><button class="btn-info btn-xs"><?php echo $ts; ?></button>
-                                </td>
-                                <td><button class="btn-info btn-xs"><?php echo $ts; ?></button>
-                                </td>
+                                    <td><button class="btn-info btn-xs"
+                                            data-timeslot="<?php echo $ts; ?>"><?php echo $ts; ?></button>
+                                    </td>
+                                    <td><button class="btn-info btn-xs"
+                                            data-timeslot="<?php echo $ts; ?>"><?php echo $ts; ?></button>
+                                    </td>
+                                    <td><button class="btn-info btn-xs"
+                                            data-timeslot="<?php echo $ts; ?>"><?php echo $ts; ?></button>
+                                    </td>
+                                    <td><button class="btn-info btn-xs"
+                                            data-timeslot="<?php echo $ts; ?>"><?php echo $ts; ?></button>
+                                    </td>
+                                    <td class="disabled"><button
+                                            class="btn-danger  disabled"><?php echo "   --Closed--"; ?></button>
+                                    </td>
+                                    <td><button class="btn-info btn-xs"
+                                            data-timeslot="<?php echo $ts; ?>"><?php echo $ts; ?></button>
+                                    </td>
+                                    <td><button class="btn-info btn-xs"
+                                            data-timeslot="<?php echo $ts; ?>"><?php echo $ts; ?></button>
+                                    </td>
 
-                            </tr>
-                            <?php }?>
-                        </table>
+                                </tr>
+                                <?php }?>
+                            </table>
+                        </div>
                     </div>
                 </div>
-            </div>
+                <!-- The Modal -->
+                <div class="modal" id="myModal">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+
+                            <!-- Modal Header -->
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4 class="modal-title">Booking:<span id="slot"></span></h4>
+                            </div>
+
+                            <!-- Modal body -->
+                            <div class="modal-body">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <form action="" method="post">
+                                            <div class="form-group">
+                                                <label for="">Timeslot</label>
+                                                <input type="text" readonly name="timeslot" id="timeslot"
+                                                    class="form-control" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="">Timeslot</label>
+                                                <input type="text" readonly name="timeslot" id="timeslot" hidden>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Modal footer -->
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
         </main>
     </div>
     <script src="./../assets/js/main.js" type="text/javascript"></script>
+    <script src="./../assets/js/bootstrap.min.js" type="text/javascript"></script>
     <script type="text/javascript">
     $(document).ready(function() {
 
@@ -261,6 +225,14 @@ echo "<td style='background:red'>" . $dt->format('l') . "<br>" . $dt->format('d 
             });
         });
 
+    });
+    </script>
+    <script>
+    $(".book").click(function() {
+        var timeslot = $(this).attr('data-timeslot');
+        $("#slot").html(timeslot);
+        $("#timeslot").val(timeslot);
+        $("#myModal").modal("show");
     });
     </script>
 </body>

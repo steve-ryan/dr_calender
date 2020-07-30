@@ -18,14 +18,14 @@
         <ul class="aside_list">
             <li class="aside_list-item">Appointment
                 <ul class="subitem">
-                <li><a href="./../admin/#">Today's appointment</a></li>
-                    <li><a href="./../admin/#">Manage</a></li>
-                    <li><a href="./../admin/#">History</a></li>
+                <li><a class="text-white" href="./../admin/#">Today's appointment</a></li>
+                    <li><a class="text-white" href="./../admin/#">Manage</a></li>
+                    <li><a class="text-white" href="./../admin/#">History</a></li>
                 </ul>
             </li>
             <li class="aside_list-item">Schedule timings</li>
             <li class="aside_list-item">Profile setting</li>
-            <li class="aside_list-item"><a href="./../doctor/changepwd.php">Change password</a></li>
+            <li class="aside_list-item"><a class="text-white" href="./../doctor/changepwd.phpclass="text-white" ">Change password</a></li>
 
             <li class="aside_list-item">Logout</li>
         </ul>

@@ -1,3 +1,25 @@
+<?php
+
+include ("./database.php");
+
+//prepare statement for patient registration
+$state=$conn->prepare("INSERT INTO patient(firstname,lastname,YOB,email,password)VALUES(?,?,?,?,?)");
+$state->bind_param("sssss",$firstname,$lastname,$yob,$email,$encry);
+if(isset($_POST['signup-btn'])){
+
+    $firstname=mysqli_real_escape_string($conn,$_POST["firstname"]);
+    $lastname=mysqli_real_escape_string($conn,$_POST["lastname"]);
+    $yob=mysqli_real_escape_string($conn,$_POST["yob"]);
+    $email=mysqli_real_escape_string($conn,$_POST["email"]);
+    $password=mysqli_real_escape_string($conn,$_POST["password"]);
+    $encry=md5($password);
+    $state->execute();
+}
+$state->close();
+$conn->close();
+
+
+?>
 <!DOCTYPE html>
 <head>
     <meta charset="utf-8">
@@ -11,7 +33,7 @@
 </head>
 
 <body
-    style="background-image: url(./../public/bookback.jpg); background-blend-mode: luminosity; background-repeat: repeat; background-attachment: fixed">
+    style="background-image: url(./../public/bg-row-2.jpg); background-blend-mode: luminosity; background-repeat: repeat; background-attachment: fixed">
     <div class="main-container">
         <div class="sign-up-container">
             <div class="login-signup">
@@ -50,7 +72,7 @@
                             <div class="form-label">
                                 First name<span class="required error" id="username-info"></span>
                             </div>
-                            <input class="input-box-330" type="text" name="username" id="username">
+                            <input class="input-box-330" type="text" name="firstname" id="username">
                         </div>
                     </div>
                     <div class="row">
@@ -58,7 +80,7 @@
                             <div class="form-label">
                                 Last name<span class="required error" id="username-info"></span>
                             </div>
-                            <input class="input-box-330" type="text" name="username" id="username">
+                            <input class="input-box-330" type="text" name="lastname" id="username">
                         </div>
                     </div>
                     
@@ -75,7 +97,7 @@
                             <div class="form-label">
                                Y.O.B<span class="required error" id="username-info"></span>
                             </div>
-                            <input class="input-box-330" type="date" name="username" id="username" required>
+                            <input class="input-box-330" type="date" name="yob" id="username" required>
                         </div>
                     </div>
                     <div class="row">
@@ -83,7 +105,7 @@
                             <div class="form-label">
                                 Password<span class="required error" id="signup-password-info"></span>
                             </div>
-                            <input class="input-box-330" type="password" name="signup-password" id="signup-password">
+                            <input class="input-box-330" type="password" name="password" id="signup-password">
                         </div>
                     </div>
                     <div class="row">

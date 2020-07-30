@@ -21,7 +21,7 @@ include ("./database.php");
     include ('./../includes/sidebars/admin_sidebar.php');
     ?>
         <main class="main"
-            style="background-image: url(./../public/servicepic3.jpg); background-blend-mode: luminosity; background-repeat: no-repeat; background-attachment: fixed">
+            style="background-image: url(./../public/servicepic3.jpg); background-repeat: no-repeat; background-attachment: fixed; background-image:linear-gradient(to top,#CCFFCC,#CCCCCC);">
             <div class="main_overview">
 
 

@@ -7,9 +7,9 @@
      font-size: 15px;
  }
 
- p {
+ /* p {
      background-color: black;
- }
+ } */
 
  .grid-container {
      display: grid;
@@ -27,12 +27,12 @@
  .aside {
      grid-area: aside;
      /* background-color: darkblue; */
-     background-color: #bd21b8;
+     background-color: #31A2B8;
  }
 
  .main {
      grid-area: main;
-     /* background-color: white; */
+     
  }
 
  /* flexing header and footer*/
@@ -70,7 +70,7 @@
 
  .aside_list-item {
      padding: 20px 20px 20px 40px;
-     color: #ddd;
+     color: #fff;
  }
 
  .aside_list-item>.subitem {
@@ -149,6 +149,20 @@
      }
  }
 
- ul.subitem{
+ ul.subitem {
      list-style: none;
  }
+
+ /* style links */
+
+ a {
+     text-decoration: none;
+ }
+
+ /* a:hover {
+     background-color: #555;
+ }
+
+ a:active {
+     background-color: black;
+ } */

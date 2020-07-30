@@ -1,3 +1,7 @@
+<?php
+ require("./../includes/patient_check.php");
+include ("./database.php");
+?>
 <!DOCTYPE html>
 <html lang="en">
 

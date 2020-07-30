@@ -18,10 +18,10 @@
             <ul class="aside_list">
                 <li class="aside_list-item">Bookings
                     <ul class="subitem">
-                        <li><a href="./../patient/book.php">Book Appointment</a></li>
-                        <li><a href="./../patient/appointment-history.php">History</a></li>
+                        <li><a class="text-white" href="./../patient/book.php">Book Appointment</a></li>
+                        <li><a class="text-white" href="./../patient/appointment-history.php">History</a></li>
                     </ul>
-                    <li class="aside_list-item"><a href="./../patient/logout.php">Logout</a></li>
+                    <li class="aside_list-item"><a class="text-white" href="./../patient/logout.php">Logout</a></li>
                 </li>
             </ul>
 

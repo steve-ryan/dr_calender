@@ -10,38 +10,30 @@
             <strong>&times;</strong>
         </div>
         <ul class="aside_list">
-            <li class="aside_list-item" rel="admin-dash"><a href="./../admin/dashboard.php">Home</a></li>
+            <li class="aside_list-item" rel="admin-dash"><a class="text-white" href="./../admin/dashboard.php">Home</a></li>
             <li class="aside_list-item">Doctors
                 <ul class="subitem ">
 
-                    <li><a href="./../admin/add-doctor.php" rel="admin-add-doc">Add Doctor</a> </li>
-                    <li><a href="./../admin/manage-doctor.php" rel="admin-mang-doc">Manage Doctors</a></li>
+                    <li><a class="text-white" class="text-white" href="./../admin/add-doctor.php" rel="admin-add-doc">Add Doctor</a> </li>
+                    <li><a class="text-white" class="text-white" href="./../admin/manage-doctor.php" rel="admin-mang-doc">Manage Doctors</a></li>
                 </ul>
             </li>
-            <li class="aside_list-item">Speciality
-                <ul class="subitem">
-                    <li><a href="./../admin/add-speciality.php">Specialization</a></li>
-                    <li><a href="./../admin/manage-specialization.php">Manage</a></li>
-                </ul>
-            </li>
-            <li class="aside_list-item">Patients
-                <ul class="subitem">
-                    <li><a href="./../admin/manage-patient.php">Manage</a></li>
-                </ul>
-            </li>
+            <li class="aside_list-item"><a class="text-white text-decoration-none"  href="./../admin/add-speciality.php">Specialization</a></li>
+            <li class="aside_list-item"><a class="text-white text-decoration-none"  href="./../admin/manage-patient.php">Patients</a></li>
+
             <li class="aside_list-item">Appointments
                 <ul class="subitem">
-                    <li><a href="./../admin/appointment-history.php">History</a></li>
+                    <li><a class="text-white" class="text-white" href="./../admin/appointment-history.php">History</a></li>
                 </ul>
             </li>
             <li class="aside_list-item">Profile
                 <ul class="subitem">
-                    <li><a href="./../admin/appointment-history.php">Settings</a></li>
-                    <li><a href="./../admin/changepwd.php">Change Password</a></li>
+                    <li><a class="text-white" href="./../admin/appointment-history.php">Settings</a></li>
+                    <li><a class="text-white" href="./../admin/changepwd.php">Change Password</a></li>
                 </ul>
             </li>
 
-            <li class="aside_list-item"><a href="./../admin/logout.php">Logout</a></li>
+            <li class="aside_list-item"><a class="text-white" href="./../admin/logout.php">Logout</a></li>
 
 
         </ul>

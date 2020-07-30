@@ -1,8 +1,8 @@
  <?php
     include 'database.php';
 
-	$id=$_POST['doctor_id'];
-    $sql = "DELETE FROM `doctor` WHERE doctor_id=$id";
+	$id=$_POST['spec_id'];
+    $sql = "DELETE FROM `speciality` WHERE spec_id=$id";
     
 
 	if (mysqli_query($conn, $sql)) {

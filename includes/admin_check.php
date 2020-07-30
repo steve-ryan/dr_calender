@@ -9,6 +9,7 @@ if ( isset( $_SESSION['id'] ) ) {
     // Let them access the "logged in only" pages
 } else {
     // Redirect them to the login page
-    header("Location: ./login.php");
+    // header("Location: ./login-form.php");
+    header("Location: ./index.php");
 }
 ?>

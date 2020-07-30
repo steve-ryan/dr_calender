@@ -1,10 +1,9 @@
- <?php
-    include 'database.php';
-
-	$id=$_POST['doctor_id'];
-    $sql = "DELETE FROM `doctor` WHERE doctor_id=$id";
-    
-
+<?php
+	include 'database.php';
+	$id=$_POST['id'];
+	$spec_name=$_POST['speciality'];
+	$sql = "UPDATE `speciality` 
+	SET `spec_name`='$spec_name' WHERE spec_id=$id";
 	if (mysqli_query($conn, $sql)) {
 		echo json_encode(array("statusCode"=>200));
 	} 
