@@ -6,10 +6,10 @@
 		while($row = $result->fetch_assoc()) {
 
 ?>
-<tr>
+<tr >
     <td><?=$row['spec_name'];?></td>
-    <td><p type="button" class="btn btn-danger btn-sm delete" data-id=<?=$row['spec_id'];?>>Delete</p></td>
-	<td><p type="button" class="btn btn-success btn-sm editbtn" data-id=<?=$row['spec_id'];?>>Edit</p></td>
+    <td><p type="button" class="btn btn-danger btn-xs delete" data-id=<?=$row['spec_id'];?>>Delete</p></td>
+	<td><p type="button" class="btn btn-success btn-xs editbtn" data-id=<?=$row['spec_id'];?>>Edit</p></td>
 </tr>
 <?php	
 	}

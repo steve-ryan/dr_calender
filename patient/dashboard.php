@@ -1,16 +1,18 @@
-<?php
- require("./../includes/patient_check.php");
+<?php require("./../includes/patient_check.php");
 include ("./database.php");
 ?>
 <!DOCTYPE html>
 <html lang="en">
 
+
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./../assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./../assets/css/fontawesome.min.css">
     <link rel="stylesheet" href="./../assets/css/test/styles.css">
     <script src="./../assets/js/jquery.js" type="text/javascript"></script>
+    <script src="./../assets/js/popper.min.js" type="text/javascript"></script>
 </head>
 
 <body>
@@ -19,137 +21,113 @@ include ("./database.php");
         <?php
     include ('./../includes/sidebars/patient_sidebar.php');
     ?>
-        <main class="main">
+        <main class="main"
+            style="background-image: url(./../public/doctor_appointment_codecanyon_banner.jpg); background-blend-mode: multiply; background-image:linear-gradient(to top,#CCFFCC,#CCCCCC); background-repeat: repeat; background-attachment: auto width:100%">
             <div class="main_overview">
-
-                <div class="row">
-                    <div class="">
-                        <div>
-                            <div class="dashboard">
-                                <?php
-                                    $duration = 35;
-                                    $cleanup = 0;
-                                    $start = '09:00';
-                                    $end='12:00';
-                                    // lunch break start
-                                    $break_start = '11:10';
-                                    //lunch break end
-                                    $break_end = '11:25';
-
-function timeslots($duration,$cleanup,$start,$end,$break_start,$break_end){
-	# code...
-	                $start = new DateTime($start);
-	                $end = new DateTime($end);
-	                $break_start = new DateTime($break_start);
-	                $break_end = new DateTime($break_end);
-	                $interval = new DateInterval("PT".$duration."M");
-	                $cleanupInterval = new DateInterval("PT".$cleanup."M");
-	                $slot = array();
-
-	    for ($intStart=$start; $intStart < $end; $intStart->add($interval)->add($cleanupInterval)) { 
-		# code...
-		$endPeriod = clone $intStart;
-		$endPeriod->add($interval);
-		if (strtotime($break_start->format('H:i A')) < strtotime($endPeriod->format('H:i A')) && strtotime(($endPeriod->format('H:i A')) < strtotime($break_end->format('H:i A')))) {
-
-			$endPeriod = $break_start;
-			$slot[] = $intStart->format('H:i A').'-'.$endPeriod->format('H:i A');
-			$intStart = $break_end;
-			$endPeriod = $break_end;
-			$intStart->sub($interval);
-
-		}else{
-		$slot[] = $intStart->format('H:i A')."-".$endPeriod->format('H:i A');
-	}
-}
-	return $slot;
-}
-?>
-
-
-
-                                <?php
-$dt = new DateTime;
-if (isset($_GET['year']) && isset($_GET['week'])) {
-    $dt->setISODate($_GET['year'], $_GET['week']);
-} else {
-    $dt->setISODate($dt->format('o'), $dt->format('W'));
-}
-$year = $dt->format('o');
-$week = $dt->format('W');
-$month = $dt->format('F');
-$year = $dt->format('Y');
-?>
-
-
-
-                                <div class="container">
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <center>
-                                                <h2><?php echo "$month $year"; ?></h2>
-                                                <a class="btn btn-primary btn-xs"
-                                                    href="<?php echo $_SERVER['PHP_SELF'].'?week='.($week-1).'&year='.$year; ?>">Pre
-                                                    Week</a>
-                                                <a class="btn btn-primary btn-xs" href="weekly.php">Current Week</a>
-                                                <!--Previous week-->
-                                                <a class="btn btn-primary btn-xs"
-                                                    href="<?php echo $_SERVER['PHP_SELF'].'?week='.($week+1).'&year='.$year; ?>">Next
-                                                    Week</a>
-                                            </center>
-                                            <!--Next week-->
-                                            <br /><br />
-                                            <table>
-                                                <tr class="sucess">
-                                                    <?php
-do {
-	if($dt->format('d M Y')==date('d M Y')){
-echo "<td style='background:red'>" . $dt->format('l') . "<br>" . $dt->format('d M Y') . "</td>\n";
-	}else{
-		echo "<td>" . $dt->format('l') . "<br>" . $dt->format('d M Y') . "</td>\n";
-	}
-    
-    $dt->modify('+1 day');
-} while ($week == $dt->format('W'));
-?>
-                                                </tr>
-                                                <?php $timeslots = timeslots($duration,$cleanup,$start,$end,$break_start,$break_end);
-    	foreach ($timeslots as $ts) {
-    		# code...
-    	
-    	?>
-                                                <tr>
-
-                                                    <td><button class="btn-info btn-xs"><?php echo $ts; ?></button>
-                                                    </td>
-                                                    <td><button class="btn-info btn-xs"><?php echo $ts; ?></button>
-                                                    </td>
-                                                    <td><button class="btn-info btn-xs"><?php echo $ts; ?></button>
-                                                    </td>
-                                                    <td><button class="btn-info btn-xs"><?php echo $ts; ?></button>
-                                                    </td>
-                                                    <td><button class="btn-info btn-xs"><?php echo $ts; ?></button>
-                                                    </td>
-                                                    <td><button class="btn-info btn-xs"><?php echo $ts; ?></button>
-                                                    </td>
-                                                    <td><button class="btn-info btn-xs"><?php echo $ts; ?></button>
-                                                    </td>
-
-                                                </tr>
-                                                <?php }?>
-                                            </table>
+                <div class="col-md-12">
+                    <div class="row">
+                <!-- Booking management by patient -->
+                        <div class="col-xl-4 col-md-6 mb-4">
+                            <div class="card border-left-primary shadow h-100 py-2 bg-light border-info">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                            </div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                <a href="./manage-bookings.php" class="card-link text-center">Manage Bookings</a>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
+                            </div>
+                        </div>
+
+                            <!-- Appointment booking card -->
+                        <div class="col-xl-4 col-md-6 mb-4">
+                            <div class="card border-left-success shadow h-100 py-2 bg-light border-success">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1"> </div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                <a href="./book.php" class="card-link text-success">Book Appointment</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Total appointment by specific patient -->
+                        <div class="col-xl-4 col-md-6 mb-4">
+                            <div class="card border-left-warning shadow h-100 py-2 bg-success border-warning">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
+                                                Appointments</div>
+                                        </div>
+                                        <div class="col-auto h5 mb-0 font-weight-bold text-gray-800">
+                                            11
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <br />
+                <br />
+
+                <div class="col-md-12">
+
+                    <div class="row">
+                        <div class="col-sm-8">
+                            <div class="card">
+                                <div class="card-header text-center bg-info text-white">Today's Appointment</div>
+                                <div class="card-body">
+                                    <table class="table table-sm">
+                                        <thead class="table-success">
+                                            <tr>
+                                                <th scope="col">#ID</th>
+                                                <th scope="col">firstname</th>
+                                                <th scope="col">lastname</th>
+                                                <th scope="col">speciality</th>
+                                                <th scope="col">timeslot</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="latest-patient-table">
 
 
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
+            </div>
         </main>
+
     </div>
     <script src="./../assets/js/main.js" type="text/javascript"></script>
+    <script src="./../assets/js/jquery.js"></script>
+    <script src="./../assets/js/popper.min.js"></script>
+    <script src="./../assets/js/bootstrap-4.3.1.js"></script>
+    <script>
+    $(document).ready(function() {
+        $.ajax({
+            url: "view-latest-patient.php",
+            type: "POST",
+            cache: false,
+            success: function(dataResult) {
+                $('#latest-patient-table').html(dataResult);
+            }
+        });
+    });
+    </script>
 </body>
 
 </html>

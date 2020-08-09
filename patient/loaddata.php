@@ -20,8 +20,6 @@ session_start();
                 $_SESSION['loggedin'] = TRUE;
                 $_SESSION['name']= $_POST['user_name'];
                 $_SESSION['id'] = $admin_id;
-                // echo 'Welcome'.$_SESSION['name'].'!';
-            //    header('Location:./../admin/dashboard.php');
 
             }else{
                 $_SESSION['message'] = "incorrect credentials!!";

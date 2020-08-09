@@ -3,12 +3,7 @@
     </div>
     <header class="header">
         <div class="header_search">Dr.Calender</div>
-        <div class="header_avatar dropdown">
-            <button class="btn dropdown-toggle" type="button">settings</button>
-            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <a class="dropdown-item" href="#">Logout</a>
-            </div>
-        </div>
+        <div class="header_avatar dropdown"><a href="./logout.php" class="nav-link logout"> <span class="d-none d-sm-inline confirmation">Logout</span><i class="fa fa-sign-out"></i></a></div>
     </header>
     <aside class="aside ">
 
@@ -27,7 +22,7 @@
             <li class="aside_list-item">Profile setting</li>
             <li class="aside_list-item"><a class="text-white" href="./../doctor/changepwd.phpclass="text-white" ">Change password</a></li>
 
-            <li class="aside_list-item">Logout</li>
+            <li class="aside_list-item confirmation">Logout</li>
         </ul>
 
     </aside>
@@ -37,5 +32,10 @@ $(document).ready(() => {
         //   console.log("hello");
         $(this).children(".subitem").show().end().siblings().find('.subitem').hide();
     });
+});
+    </script>
+     <script type="text/javascript">
+$('.confirmation').on('click', function() {
+    return confirm('Are you sure to logout?');
 });
     </script>

@@ -19,7 +19,7 @@
                 session_regenerate_id();
                 $_SESSION['loggedin'] = TRUE;
                 $_SESSION['name']= $_POST['username'];
-                $_SESSION['id'] = $admin_id;
+                $_SESSION['admin_id'] = $admin_id;
                 // echo 'Welcome'.$_SESSION['name'].'!';
             //    header('Location:./../admin/dashboard.php');
 
@@ -28,7 +28,7 @@
                 
                 // echo 'Incorrect password!';
             }
-            if(isset($_SESSION["id"])){
+            if(isset($_SESSION["admin_id"])){
                 header('Location:./../admin/dashboard.php');
                 
             }

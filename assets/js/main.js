@@ -19,7 +19,9 @@ asideClose.addEventListener("click", function () {
 });
 
 // Disabling past date whenever selecting
-let datevalid = document.getElementById("date");
+let datevalid = document.getElementById("datepicker");
 datevalid.max = new Date().toISOString().split("T")[0];
+
+
 
 

@@ -3,7 +3,7 @@
     </div>
     <header class="header">
         <div class="header_search">Dr.Calender</div>
-        <div class="header_avatar dropdown"><a href="login.html" class="nav-link logout"> <span class="d-none d-sm-inline">Logout</span><i class="fa fa-sign-out"></i></a></div>
+        <div class="header_avatar dropdown"><a href="./logout.php" class="nav-link logout"> <span class="d-none d-sm-inline confirmation">Logout</span><i class="fa fa-sign-out"></i></a></div>
     </header>
     <aside class="aside">
         <div class="aside_close-icon">
@@ -33,7 +33,7 @@
                 </ul>
             </li>
 
-            <li class="aside_list-item"><a class="text-white" href="./../admin/logout.php">Logout</a></li>
+            <li class="aside_list-item"><a class="text-white confirmation" href="./../admin/logout.php">Logout</a></li>
 
 
         </ul>
@@ -44,5 +44,10 @@ $(document).ready(() => {
         //   console.log("hello");
         $(this).children(".subitem").show().end().siblings().find('.subitem').hide();
     });
+});
+    </script>
+     <script type="text/javascript">
+$('.confirmation').on('click', function() {
+    return confirm('Are you sure to logout?');
 });
     </script>

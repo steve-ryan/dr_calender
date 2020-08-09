@@ -14,6 +14,7 @@ include ("./database.php");
     <script src="./../assets/js/jquery.js" type="text/javascript"></script>
 </head>
 
+
 <body>
     <div class="grid-container">
 
@@ -21,11 +22,11 @@ include ("./database.php");
     include ('./../includes/sidebars/admin_sidebar.php');
     ?>
         <main class="main"
-            style="background-image: url(./../public/servicepic3.jpg); background-repeat: no-repeat; background-attachment: fixed; background-image:linear-gradient(to top,#CCFFCC,#CCCCCC);">
+            style="background-image: url(./../public/managedoc.jpeg); background-blend-mode: luminosity; background-repeat: no-repeat; background-image:linear-gradient(to top,#CCFFCC,#CCCCCC); background-attachment: fixed">
             <div class="main_overview">
 
 
-                <div class="col-md-12">
+                 <div class="col-md-12">
 
                     <div class="card border-success ">
 
@@ -109,9 +110,7 @@ include ("./database.php");
     </div>
     <script src="./../assets/js/main.js" type="text/javascript"></script>
     <script src="./../assets/js/main.js" type="text/javascript"></script>
-    <!-- jQuery necessary for Bootstrap's JavaScript plugins) -->
     <script src="./../assets/js/jquery.js"></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="./../assets/js/popper.min.js"></script>
     <script src="./../assets/js/bootstrap-4.3.1.js"></script>
     <script>

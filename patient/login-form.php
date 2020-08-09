@@ -5,30 +5,29 @@
 
      require('./database.php');
      
-     if($stmt = $conn->prepare('SELECT patient_id,password FROM patient WHERE firstname= ?')){
+     if($stmt = $conn->prepare('SELECT patient_id,password,email FROM patient WHERE firstname= ?')){
         $stmt->bind_param('s',$_POST['username']);
         $stmt->execute();
         //store result so we can check if account exists in db
         $stmt->store_result();
 
         if($stmt->num_rows > 0){
-            $stmt ->bind_result($patient_id, $patient_password);
+            $stmt ->bind_result($patient_id,$patient_password,$email);
             $stmt->fetch();
 
             if((md5($_POST['signup-password'])== $patient_password)){
                 session_regenerate_id();
                 $_SESSION['loggedin'] = TRUE;
-                $_SESSION['name']= $_POST['username'];
-                $_SESSION['id'] = $patient_id;
-                // echo 'Welcome'.$_SESSION['name'].'!';
-            //    header('Location:./../admin/dashboard.php');
+                $_SESSION['pname']= $_POST['username'];
+                $_SESSION['p_email']= $email;
+                $_SESSION['pid'] = $patient_id;
 
             }else{
                 $_SESSION['message'] = "incorrect credentials!!";
                 
                 // echo 'Incorrect password!';
             }
-            if(isset($_SESSION["id"])){
+            if(isset($_SESSION["pid"])){
                 header('Location:./../patient/dashboard.php');
             }
         }

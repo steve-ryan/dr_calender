@@ -57,12 +57,12 @@ echo $_SESSION['name'];
                         <div class="col-md-12">
                             <div class="card">
 
-                                <div class="alert alert-success alert-dismissible" id="success" style="display:none;">
+                                <div class="alert alert-success alert-dismissible"  style="display:none;">
                                     <a href="#" class="close" data-dismiss="alert"
                                         aria-label="close"><?php echo $_SESSION['success'];?>x</a>
                                 </div>
 
-                                <div class="alert alert-danger alert-dismissible" id="error" style="display:none;">
+                                <div class="alert alert-danger alert-dismissible"  style="display:none;">
                                 <?php echo $_SESSION['danger'];?>
                                     <a href="#" class="close" data-dismiss="alert"
                                         aria-label="close"><?php echo $_SESSION['danger'];?>x</a>

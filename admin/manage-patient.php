@@ -22,7 +22,8 @@
             <div class="main_overview">
                 <div class="col-md-12">
                     <div class="card border-info">
-                        <div class="card-header text-black h-100 no-radius text-center  border-success"> Manage Patients</div>
+                        <div class="card-header text-black h-100 no-radius text-center  border-success"> Manage Patients
+                        </div>
 
                         <div class="card-body ">
                             <table class="table table-sm">
@@ -47,6 +48,7 @@
                         </div>
                     </div>
                 </div>
+            </div>
         </main>
     </div>
     <script src="./../assets/js/main.js" type="text/javascript"></script>
@@ -87,22 +89,25 @@
     });
     </script>
 
-   <script>
-   function active_inactive_doc(val,patient_id){
-    $.ajax({
-        type:'POST',
-        url:'patient_status_ajax.php',
-        data:{val:val,patient_id:patient_id},
-        success:function(result){
-            // console.log(result);
-            if (result==1) {
-                $('#sts'+patient_id).html('Active').css('color','green');
+    <script>
+    function active_inactive_doc(val, patient_id) {
+        $.ajax({
+            type: 'POST',
+            url: 'patient_status_ajax.php',
+            data: {
+                val: val,
+                patient_id: patient_id
+            },
+            success: function(result) {
+                // console.log(result);
+                if (result == 1) {
+                    $('#sts' + patient_id).html('Active').css('color', 'green');
 
-            }else{
-                $('#sts'+patient_id).html('Inactive').css('color','red');
+                } else {
+                    $('#sts' + patient_id).html('Inactive').css('color', 'red');
+                }
             }
-        }
-    });
-   }
+        });
+    }
     </script>
 </body>

@@ -20,8 +20,6 @@ include ("./database.php");
 
         <?php
     include ('./../includes/sidebars/admin_sidebar.php');
-   echo $_SESSION['name'];
-   echo $_SESSION['id'];
     ?>
         <main class="main"  style="background-image: url(./../public/doctor_appointment_codecanyon_banner.jpg); background-blend-mode: multiply; background-image:linear-gradient(to top,#CCFFCC,#CCCCCC); background-repeat: repeat; background-attachment: auto width:100%">
             <div class="main_overview">
@@ -34,8 +32,8 @@ include ("./database.php");
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Total
-                                                Doctors</div>
+                                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">  <a href="./manage-doctor.php" class="card-link ">Total
+                                                Doctors</a></div>
                                             <div class="h5 mb-0 font-weight-bold text-gray-800">
                                             <?php
                                                     $doctor = "SELECT count('doctor_id') FROM doctor";
@@ -60,8 +58,8 @@ include ("./database.php");
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                                Specialities</div>
+                                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1"><a href="./add-speciality.php" class="card-link ">
+                                                Specialities</a></div>
                                             <div class="h5 mb-0 font-weight-bold text-gray-800">
                                             <?php
                                                     $speciality = "SELECT count('spec_id') FROM speciality";
@@ -86,8 +84,8 @@ include ("./database.php");
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Total
-                                                Patients</div>
+                                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1"> <a href="./manage-patient.php" class="card-link ">Total
+                                                Patients</a></div>
                                             <div class="row no-gutters align-items-center">
                                                 <div class="col-auto">
                                                     <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">

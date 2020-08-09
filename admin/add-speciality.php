@@ -66,34 +66,6 @@
                     </div>
                 </div>
             </div>
-
-            <!-- Modal -->
-<div id="editEmployeeModal" class="modal fade">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<form id="update_form">
-					<div class="modal-header">						
-						<h4 class="modal-title">Edit User</h4>
-						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-					</div>
-					<div class="modal-body">
-						<input type="hidden" id="id_u" name="id" class="form-control" required>					
-						<div class="form-group">
-							<label>Name</label>
-							<input type="text" id="name_u" name="name" class="form-control" required>
-						</div>				
-					</div>
-					<div class="modal-footer">
-					<input type="hidden" value="2" name="type">
-						<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-						<button type="button" class="btn btn-info" id="update">Update</button>
-					</div>
-				</form>
-			</div>
-		</div>
-	</div>
-
-
         </main>
     </div>
     <script src="./../assets/js/main.js" type="text/javascript"></script>
@@ -173,74 +145,7 @@
 
     });
     </script>
-    <script>
-    // $(document).ready(function() {
-                $('.editbtn').click(function() {
-                            var $this = $(this);
-                            var tds = $this.closest('tr').find('td').filter(function() {
-                                return $(this).find('.editbtn').length === 0;
-                            });
-                            if ($this.html() === 'Edit') {
-                                $this.html('Save');
-                                tds.prop('contenteditable', true);
-                            } else {
-                                $this.html('Updating..');
-                                $this.attr('disabled', true);
-                                $.ajax({
-                                        type: 'POST',
-                                        url: 'update.php',
-                                        data: {
-                                            // spec_id: $(this).attr("data-id")
-                                            speciality:speciality
-                                        }).success(function(data) {
-                                            console.log("crazy");
-                                        $this.attr('disabled', false);
-                                        $this.html('Edit');
-                                        tds.prop('contenteditable', false);
-                                        // request success, do what you want to do here
-                                    }).error(function() {
-                                        // request error
-                                    });
-
-                                }
-                            // });
-    </script>
-    <script>
-
-    $(document).on('click','.update',function(e) {
-		var id=$(this).attr("data-id");
-		var name=$(this).attr("data-name");
-		var email=$(this).attr("data-email");
-		var phone=$(this).attr("data-phone");
-		var city=$(this).attr("data-city");
-		$('#id_u').val(id);
-		$('#name_u').val(name);
-		$('#email_u').val(email);
-		$('#phone_u').val(phone);
-		$('#city_u').val(city);
-	});
-	
-	$(document).on('click','#update',function(e) {
-		var data = $("#update_form").serialize();
-		$.ajax({
-			data: data,
-			type: "post",
-			url: "backend/save.php",
-			success: function(dataResult){
-					var dataResult = JSON.parse(dataResult);
-					if(dataResult.statusCode==200){
-						$('#editEmployeeModal').modal('hide');
-						alert('Data updated successfully !'); 
-                        location.reload();						
-					}
-					else if(dataResult.statusCode==201){
-					   alert(dataResult);
-					}
-			}
-		});
-	});
-    </script>
-
+   
 </body>
 </body>
 

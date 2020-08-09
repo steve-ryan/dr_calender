@@ -4,7 +4,7 @@
 // Always start this first
 session_start();
 
-if ( isset( $_SESSION['id'] ) ) {
+if ( isset( $_SESSION['admin_id'] ) ) {
     // Grab user data from the database using the user_id
     // Let them access the "logged in only" pages
 } else {
