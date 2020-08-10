@@ -137,14 +137,19 @@ $year = $dt -> format('Y');
                                         <div class="form-group">
                                             <select class="form-control" name="date">
                                                 <option value="0" readonly>- Select -</option>
-                                                <?php $timeslots = timeslots($duration,$cleanup,$start,$end,$break_start,$break_end);
-    	                        foreach ($timeslots as $ts) {
-                        	?>
+                                               <?php
+                                                    $sql="SELECT t.slot_id,t.name FROM timeslot as t LEFT JOIN appointment as a ON t.slot_id = a.slot_id WHERE a.slot_id IS NULL";
+                                                    $data= mysqli_query($conn,$sql);
+                                                    while ($row = mysqli_fetch_assoc($data)) {
+                                                        # code...
+                                                        $id = $row['slot_id'];
+                                                        $name = $row['name'];
 
-                                                <option value="<?php echo $ts; ?>" name="<?php echo $ts; ?>">
-                                                    <?php echo $ts; ?>
-                                                </option>
-                                                <?php }?>
+                                                        #slot
+
+                                                        echo "<option value='".$name."' >".$name."</option>";
+                                                    }
+                                                    ?>
                                             </select>
                                         </div>
                                         <button type="submit" name="submit"
@@ -202,7 +207,8 @@ $year = $dt -> format('Y');
     <script>
     var today = new Date();
     $("#datepicker").datepicker({
-        beforeShowDay: onlyTheseWeekDays([0,1,2, 3,4,6]),
+        beforeShowDay: onlyTheseWeekDays([0,1,2,3,4,6]),
+        dateFormat: 'yy-mm-dd',
         changeMonth: true,
         changeYear: true,
         minDate: today

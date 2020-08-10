@@ -32,17 +32,16 @@ include ("./database.php");
                             <table class="table table-sm">
                                 <thead class="table-success">
                                     <tr>
-
-                                        <th scope="col">#ID</th>
                                         <th scope="col">Date</th>
+                                        <th scope="col">Time</th>
                                         <th scope="col">Firstname</th>
                                         <th scope="col">Lastname</th>
                                         <th scope="col">Speciality</th>
                                         <th scope="col">Status</th>
-                                        <th scope="col">Cancel Appointment</th>
+                                        <th scope="col">Cancel</th>
                                     </tr>
                                 </thead>
-                                <tbody id="patient-table">
+                                <tbody id="mbookings">
 
 
                                 </tbody>
@@ -61,11 +60,11 @@ include ("./database.php");
     <script>
     $(document).ready(function() {
         $.ajax({
-            url: "view-latest-patient.php",
+            url: "mbookings.php",
             type: "POST",
             cache: false,
             success: function(dataResult) {
-                $('#latest-patient-table').html(dataResult);
+                $('#mbookings').html(dataResult);
             }
         });
     });
