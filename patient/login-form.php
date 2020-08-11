@@ -5,7 +5,7 @@
 
      require('./database.php');
      
-     if($stmt = $conn->prepare('SELECT patient_id,password,email FROM patient WHERE firstname= ?')){
+     if($stmt = $conn->prepare('SELECT patient_id,password,email FROM patient WHERE pfirstname= ?')){
         $stmt->bind_param('s',$_POST['username']);
         $stmt->execute();
         //store result so we can check if account exists in db

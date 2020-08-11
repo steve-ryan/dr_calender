@@ -1,6 +1,6 @@
 <?php
 	include 'database.php';
-	$sql = "SELECT patient_id,firstname,lastname,YOB,email,active FROM patient;";
+	$sql = "SELECT patient_id,pfirstname,plastname,YOB,email,active FROM patient;";
 	$result = $conn->query($sql);
 	if ($result->num_rows > 0) {
 		while($row = $result->fetch_assoc()) {
@@ -8,8 +8,8 @@
 ?>
 <tr>
     <td><?=$row['patient_id'];?></td>
-    <td><?=$row['firstname'];?></td>
-    <td><?=$row['lastname'];?></td>
+    <td><?=$row['pfirstname'];?></td>
+    <td><?=$row['plastname'];?></td>
     <td><?=$row['YOB'];?></td>
     <td><?=$row['email'];?></td>
     <td>

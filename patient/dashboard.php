@@ -68,7 +68,14 @@ include ("./database.php");
                                                 Appointments</div>
                                         </div>
                                         <div class="col-auto h5 mb-0 font-weight-bold text-gray-800">
-                                            11
+                                            <?php
+                                                    $pid=$_SESSION['pid'];
+                                                    $bookings = "SELECT count('booking_id') FROM appointment WHERE patient_id='$pid'";
+                                                    $result=mysqli_query($conn,$bookings);
+                                                    $row=mysqli_fetch_array($result);
+                                                    echo "$row[0]";
+                                                    mysqli_close($conn);
+                                                    ?>
                                         </div>
                                     </div>
                                 </div>
