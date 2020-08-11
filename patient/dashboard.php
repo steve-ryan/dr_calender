@@ -96,9 +96,10 @@ include ("./database.php");
                                                 <th scope="col">lastname</th>
                                                 <th scope="col">speciality</th>
                                                 <th scope="col">timeslot</th>
+                                                <th scope="col">Status</th>
                                             </tr>
                                         </thead>
-                                        <tbody id="latest-patient-table">
+                                        <tbody id="today-table">
 
 
                                         </tbody>
@@ -119,11 +120,11 @@ include ("./database.php");
     <script>
     $(document).ready(function() {
         $.ajax({
-            url: "view-latest-patient.php",
+            url: "today.php",
             type: "POST",
             cache: false,
             success: function(dataResult) {
-                $('#latest-patient-table').html(dataResult);
+                $('#today-table').html(dataResult);
             }
         });
     });

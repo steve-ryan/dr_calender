@@ -1,59 +1,8 @@
 <?php require("./../includes/patient_check.php");
 include ("./database.php");
-
-    
-$duration = 60; // how much the is the duration of a time slot
-$cleanup    = 0; // no time interval
-$start    = '09:00'; // start time
-$end      = '21:00'; // end time
-$break_start = '12:59'; // break start
-$break_end   = '16:00'; // break end
-// Our timeslot code
-function timeslots($duration, $cleanup, $start, $end, $break_start, $break_end) {
-    $start         = new DateTime($start);
-    $end           = new DateTime($end);
-    $break_start           = new DateTime($break_start);
-    $break_end           = new DateTime($break_end);
-    $interval      = new DateInterval("PT" . $duration . "M");
-    $cleanupInterval = new DateInterval("PT" . $cleanup . "M");
-    $periods = array();
-
-    for ($intStart = $start; $intStart < $end; $intStart->add($interval)->add($cleanupInterval)) {
-        $endPeriod = clone $intStart;
-        $endPeriod->add($interval);
-
-        if(strtotime($break_start->format('H:i ')) < strtotime($endPeriod->format('H:i ')) && strtotime($endPeriod->format('H:i ')) < strtotime($break_end->format('H:i '))){
-            $endPeriod = $break_start;
-            $periods[] = $intStart->format('H:i ') . ' - ' . $endPeriod->format('H:i ');
-            $intStart = $break_end;
-            $endPeriod = $break_end;
-            $intStart->sub($interval);
-        }else{
-            $periods[] = $intStart->format('H:i ') . ' - ' . $endPeriod->format('H:i ');
-        }
-    }
-
-
-    return $periods;
-   
-}
 ?>
-<?php
-$dt = new DateTime;
-if (isset($_GET['year']) && isset($_GET['week'])) {
-    $dt -> setISODate($_GET['year'], $_GET['week']);
-} else {
-    $dt -> setISODate($dt -> format('o'), $dt -> format('W'));
-}
-$year = $dt -> format('o');
-$week = $dt -> format('W');
-$month = $dt -> format('F');
-$year = $dt -> format('Y');
-?>
-
 <!DOCTYPE html>
 <html lang="en">
-
 
 <head>
     <meta charset="UTF-8" />
@@ -131,14 +80,15 @@ $year = $dt -> format('Y');
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <input type="text" class="form-control" id="datepicker" placeholder="Pick date.." autocomplete="off"
-                                                name="date" readonly="readonly" style="background:white;">
+                                            <input type="text" class="form-control" id="datepicker"
+                                                placeholder="Pick date.." autocomplete="off" name="date"
+                                                readonly="readonly" style="background:white;">
                                         </div>
                                         <div class="form-group">
                                             <select class="form-control" name="date">
                                                 <option value="0" readonly>- Select -</option>
-                                               <?php
-                                                    $sql="SELECT t.slot_id,t.name FROM timeslot as t LEFT JOIN appointment as a ON t.slot_id = a.slot_id WHERE a.slot_id IS NULL";
+                                                <?php
+                                                    $sql="SELECT t.slot_id,t.name FROM timeslot as t LEFT JOIN(SELECT slot_id FROM `appointment` WHERE booking_date = '2020-08-11' AND doctor_id='1') as a ON a.slot_id = t.slot_id WHERE a.slot_id IS NULL";
                                                     $data= mysqli_query($conn,$sql);
                                                     while ($row = mysqli_fetch_assoc($data)) {
                                                         # code...
@@ -148,6 +98,10 @@ $year = $dt -> format('Y');
                                                         #slot
 
                                                         echo "<option value='".$name."' >".$name."</option>";
+                                                    }
+                                                    
+                                                    if(!$data){
+                                                        echo "All slots booked for that day!!";
                                                     }
                                                     ?>
                                             </select>
@@ -207,7 +161,7 @@ $year = $dt -> format('Y');
     <script>
     var today = new Date();
     $("#datepicker").datepicker({
-        beforeShowDay: onlyTheseWeekDays([0,1,2,3,4,6]),
+        beforeShowDay: onlyTheseWeekDays([0, 1, 2, 3, 4, 6]),
         dateFormat: 'yy-mm-dd',
         changeMonth: true,
         changeYear: true,
