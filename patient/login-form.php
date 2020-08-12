@@ -1,9 +1,5 @@
 <?php
-
-//Starting session
-// session_start();
-
-     require('./database.php');
+     include ("./../database/config.php");
      
      if($stmt = $conn->prepare('SELECT patient_id,password,email FROM patient WHERE pfirstname= ?')){
         $stmt->bind_param('s',$_POST['username']);

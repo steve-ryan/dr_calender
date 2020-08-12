@@ -1,5 +1,5 @@
 <?php
-	include 'database.php';
+	include ("./../database/config.php");
 	$sql = "SELECT s.spec_name,d.doctor_id,d.firstname,d.lastname,d.email,d.active FROM doctor as d JOIN speciality as s ON d.spec_id = s.spec_id;";
 	$result = $conn->query($sql);
 	if ($result->num_rows > 0) {

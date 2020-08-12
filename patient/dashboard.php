@@ -1,5 +1,5 @@
 <?php require("./../includes/patient_check.php");
-include ("./database.php");
+include ("./../database/config.php");
 ?>
 <!DOCTYPE html>
 <html lang="en">

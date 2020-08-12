@@ -1,5 +1,5 @@
 <?php
-    include 'database.php';
+    include ("./../database/config.php");
 
     $_POST['val'];
     $_POST['doctor_id'];

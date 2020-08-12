@@ -1,6 +1,5 @@
 <?php
-
-include("./database.php");
+include ("./../database/config.php");
 
 $firstname = $_POST['firstname'];
 $lastname = $_POST["lastname"];

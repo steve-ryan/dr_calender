@@ -1,6 +1,6 @@
 <?php
     require("./../includes/patient_check.php");
-    include 'database.php';
+    include ("./../database/config.php");
     $pid=$_SESSION['pid'];
     $sql = "SELECT a.patient_id,a.booking_id,a.booking_date,t.name,a.status,d.firstname,d.lastname,s.spec_name FROM appointment as a JOIN doctor as d ON a.doctor_id=d.doctor_id JOIN speciality as s ON d.spec_id=s.spec_id JOIN timeslot as t ON a.slot_id =t.slot_id WHERE a.patient_id='$pid';";
 	$result = $conn->query($sql);

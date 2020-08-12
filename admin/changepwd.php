@@ -20,7 +20,7 @@ include ('./../includes/admin_check.php');
 
     // session_start();
     include ('./../includes/sidebars/admin_sidebar.php');
-    include 'database.php';
+    include ("./../database/config.php");
 
     //change password script
     if(isset($_POST['submit']))

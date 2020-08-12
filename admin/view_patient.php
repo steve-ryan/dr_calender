@@ -1,5 +1,5 @@
 <?php
-	include 'database.php';
+	include ("./../database/config.php");
 	$sql = "SELECT patient_id,pfirstname,plastname,YOB,email,active FROM patient;";
 	$result = $conn->query($sql);
 	if ($result->num_rows > 0) {

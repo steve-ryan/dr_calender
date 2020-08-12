@@ -1,5 +1,5 @@
 <?php
-	include 'database.php';
+	include ("./../database/config.php");
 	$sql = "SELECT pfirstname, plastname, email FROM patient ORDER BY created_at DESC LIMIT 5";
 	$result = $conn->query($sql);
 	if ($result->num_rows > 0) {

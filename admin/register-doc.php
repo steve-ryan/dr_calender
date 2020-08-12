@@ -1,6 +1,5 @@
 <?php
-
-include("./database.php");
+include ("./../database/config.php");
 
 $firstname =mysqli_real_escape_string($conn,$_POST['firstname']);
 $lastname = mysqli_real_escape_string($conn,$_POST["lastname"]);

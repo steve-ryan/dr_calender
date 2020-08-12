@@ -1,5 +1,5 @@
  <?php
-    include 'database.php';
+    include ("./../database/config.php");
 
 	$id=$_POST['spec_id'];
     $sql = "DELETE FROM `speciality` WHERE spec_id=$id";

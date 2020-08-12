@@ -1,5 +1,5 @@
 <?php
-include "database.php";
+include ("./../database/config.php");
 
 $specid = $_POST['speciality']; 
 

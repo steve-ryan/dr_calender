@@ -3,7 +3,8 @@
 //Starting session
 session_start();
 
-     require('./../includes/connection.php');
+    //  require('./../includes/connection.php');
+     include ("./../database/config.php");
      
      if($stmt = $conn->prepare('SELECT admin_id,admin_password FROM admin WHERE username= ?')){
         $stmt->bind_param('s',$_POST['user_name']);

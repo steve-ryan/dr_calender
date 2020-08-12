@@ -1,5 +1,5 @@
 <?php
-    include 'database.php';
+    include ("./../database/config.php");
 	$specname =mysqli_real_escape_string($conn,$_POST['speciality']);
 	
 	$specialityduplicate=mysqli_query($conn,"select * from speciality where spec_name='$specname'");

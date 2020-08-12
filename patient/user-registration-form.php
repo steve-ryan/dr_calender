@@ -1,6 +1,5 @@
 <?php
-
-include ("./database.php");
+include ("./../database/config.php");
 
 //prepare statement for patient registration
 $state=$conn->prepare("INSERT INTO patient(firstname,lastname,YOB,email,password)VALUES(?,?,?,?,?)");

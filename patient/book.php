@@ -1,5 +1,5 @@
 <?php require("./../includes/patient_check.php");
-include ("./database.php");
+include ("./../database/config.php");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -79,7 +79,7 @@ include ("./database.php");
                                                 </select>
                                             </div>
                                         </div>
-                                    
+
                                         <?php
                                         $pid=$_SESSION['pid'];
                                         echo '<input type="hidden" name="id" value="'.$pid.'">';
@@ -93,7 +93,7 @@ include ("./database.php");
                                             <select class="form-control" name="date">
                                                 <option value="0" readonly>- Select -</option>
                                                 <?php
-                                                    $sql="SELECT t.slot_id,t.name FROM timeslot as t LEFT JOIN(SELECT slot_id FROM `appointment` WHERE booking_date = '2020-08-11' AND doctor_id='1') as a ON a.slot_id = t.slot_id WHERE a.slot_id IS NULL";
+                                                    $sql="SELECT t.slot_id,t.name FROM timeslot as t LEFT JOIN(SELECT slot_id FROM `appointment` WHERE booking_date = '2020-08-12' AND doctor_id='1') as a ON a.slot_id = t.slot_id WHERE a.slot_id IS NULL";
                                                     $data= mysqli_query($conn,$sql);
                                                     while ($row = mysqli_fetch_assoc($data)) {
                                                         # code...

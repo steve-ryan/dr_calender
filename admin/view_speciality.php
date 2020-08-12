@@ -1,5 +1,5 @@
 <?php
-	include 'database.php';
+	include ("./../database/config.php");
 	$sql = "SELECT spec_id,spec_name FROM speciality";
 	$result = $conn->query($sql);
 	if ($result->num_rows > 0) {

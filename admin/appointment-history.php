@@ -13,25 +13,57 @@
 <body>
     <div class="grid-container">
 
-    <?php
-    include ('./../includes/sidebars/admin_sidebar.php');
-    ?>
+        <?php
+       include ('./../includes/sidebars/admin_sidebar.php');
+        ?>
         <main class="main">
             <div class="main_overview">
+                <div class="col-md-12">
+                    <!-- <div class="row"> -->
+                    <div class="card">
+                        <div class="card-header text-center bg-light text-success">Appointment History</div>
+                        <div class="card-body">
+                            <table class="table table-sm">
+                                <thead class="table-success">
+                                    <tr>
+
+                                        <th scope="col">#ID</th>
+                                        <th scope="col">Patient name</th>
+                                        <th scope="col">email</th>
+                                        <th scope="col">YOB</th>
+                                        <th scope="col">Doctor name</th>
+                                        <th scope="col">Date</th>
+                                        <th scope="col">Time</>
+                                        <th scope="col">Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="appointment-table">
 
 
-               
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
             </div>
         </main>
     </div>
     <script src="./../assets/js/main.js" type="text/javascript"></script>
     <script src="./../assets/js/main.js" type="text/javascript"></script>
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="./../assets/js/jquery.js"></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="./../assets/js/popper.min.js"></script>
     <script src="./../assets/js/bootstrap-4.3.1.js"></script>
+    <script>
+        $(document).ready(function() {
+        $.ajax({
+            url: "appointment.php",
+            type: "POST",
+            cache: false,
+            success: function(dataResult) {
+                $('#appointment-table').html(dataResult);
+            }
+        });
+    });
+    </script>
 </body>
-</body>
-
 </html>

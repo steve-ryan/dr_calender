@@ -3,9 +3,9 @@
 //Starting session
 // session_start();
 
-     require('./../includes/connection.php');
+    include ("./../database/config.php");
      
-     if($stmt = $conn->prepare('SELECT admin_id,admin_password FROM admin WHERE username= ?')){
+     if($stmt = $conn->prepare('SELECT admin_id,password FROM admin WHERE username= ?')){
         $stmt->bind_param('s',$_POST['username']);
         $stmt->execute();
         //store result so we can check if account exists in db

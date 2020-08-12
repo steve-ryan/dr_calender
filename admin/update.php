@@ -1,5 +1,5 @@
 <?php
-	include 'database.php';
+	include ("./../database/config.php");
 	$id=$_POST['id'];
 	$spec_name=$_POST['speciality'];
 	$sql = "UPDATE `speciality` 
