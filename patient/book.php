@@ -1,5 +1,6 @@
 <?php require("./../includes/patient_check.php");
 include ("./../database/config.php");
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -54,7 +55,7 @@ include ("./../database/config.php");
                             <div class="card">
                                 <div class="card-header text-center bg-info text-white">Make Appointment</div>
                                 <div class="card-body">
-                                    <form method="" action="">
+                                    <form method="" action="" id="booking_form">
                                         <div class="form-row">
                                             <div class="form-group col-md-6">
                                                 <select class="form-control" id="sel_spec">
@@ -73,45 +74,32 @@ include ("./../database/config.php");
                                                     ?>
                                                 </select>
                                             </div>
+
                                             <div class="form-group col-md-6">
-                                                <select class="form-control" id="sel_doc">
+                                                <select class="form-control" id="sel_doc" name="sel_doc">
                                                     <option value="0">- Select -</option>
                                                 </select>
                                             </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" id="datepicker" value=""
+                                                placeholder="Pick date.." readonly autocomplete="off" name="datepicker"
+                                                style="background:white;">
+                                        </div>
+
+                                        <div class="form-group">
+                                            <select class="form-control" id="show">
+                                                <option value="0">- Select -</option>
+                                            </select>
                                         </div>
 
                                         <?php
                                         $pid=$_SESSION['pid'];
                                         echo '<input type="hidden" name="id" value="'.$pid.'">';
                                         ?>
-                                        <div class="form-group">
-                                            <input type="text" class="form-control" id="datepicker"
-                                                placeholder="Pick date.." autocomplete="off" name="date"
-                                                readonly="readonly" style="background:white;">
-                                        </div>
-                                        <div class="form-group">
-                                            <select class="form-control" name="date">
-                                                <option value="0" readonly>- Select -</option>
-                                                <?php
-                                                    $sql="SELECT t.slot_id,t.name FROM timeslot as t LEFT JOIN(SELECT slot_id FROM `appointment` WHERE booking_date = '2020-08-12' AND doctor_id='1') as a ON a.slot_id = t.slot_id WHERE a.slot_id IS NULL";
-                                                    $data= mysqli_query($conn,$sql);
-                                                    while ($row = mysqli_fetch_assoc($data)) {
-                                                        # code...
-                                                        $id = $row['slot_id'];
-                                                        $name = $row['name'];
 
-                                                        #slot
 
-                                                        echo "<option value='".$name."' >".$name."</option>";
-                                                    }
-                                                    
-                                                    if(!$data){
-                                                        echo "All slots booked for that day!!";
-                                                    }
-                                                    ?>
-                                            </select>
-                                        </div>
-                                        <button type="submit" name="submit"
+                                        <button type="submit" name="submit" id="submit_btn"
                                             class="btn btn-info btn-lg btn-block">Book</button>
                                     </form>
                                 </div>
@@ -126,7 +114,6 @@ include ("./../database/config.php");
     <script src="./../assets/js/main.js" type="text/javascript"></script>
     <script src="./../assets/js/jquery.js"></script>
     <script src="./../assets/js/jquery-ui.js"></script>
-    <!-- <script src="./disable.js"></script> -->
     <script src="./../assets/js/popper.min.js"></script>
     <script src="./../assets/js/bootstrap-4.3.1.js"></script>
     <script>
@@ -173,6 +160,48 @@ include ("./../database/config.php");
         minDate: today
     });
     </script>
+    <script>
+    $(document).ready(function() {
+        $("#booking_form").submit(function(e) {
+            e.preventDefault();
+
+            //disable the submit button
+            $("#submit_btn").attr("disabled", true);
+            return true;
+        });
+    });
+    </script>
+    <script>
+    $(document).ready(function() {
+    
+        $("form").change(function(form) {
+            $.ajax({
+                type: "POST",
+                url: "bkdate.php",
+                data: $(this).serialize(),
+                dataType: 'json',
+                success: function(result) {
+
+                    var len = result.length;
+                    $("#show").empty();
+
+                    for (var i = 0; i < len; i++) {
+                        var id = result[i]['slot_id'];
+                        var name = result[i]['name'];
+
+                        $("#show").append("<option value='" + id + "'>" + name +
+                            "</option>");
+                    }
+                    
+                }
+            });
+        });
+
+
+
+    });
+    </script>
+
 </body>
 
 </html>

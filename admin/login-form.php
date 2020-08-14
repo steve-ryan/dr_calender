@@ -75,7 +75,9 @@
             <div class="row">
                 <input class="sign-up-btn" type="submit" name="login" id="login-btn" value="Login">
             </div>
-
+            <div class="row">
+                <a href="./../#">Back Home</a>
+            </div>
         </form>
     </div>
 </div>

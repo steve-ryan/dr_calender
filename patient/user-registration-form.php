@@ -2,7 +2,7 @@
 include ("./../database/config.php");
 
 //prepare statement for patient registration
-$state=$conn->prepare("INSERT INTO patient(firstname,lastname,YOB,email,password)VALUES(?,?,?,?,?)");
+$state=$conn->prepare("INSERT INTO patient(pfirstname,plastname,YOB,email,password)VALUES(?,?,?,?,?)");
 $state->bind_param("sssss",$firstname,$lastname,$yob,$email,$encry);
 if(isset($_POST['signup-btn'])){
 
@@ -20,6 +20,7 @@ $conn->close();
 
 ?>
 <!DOCTYPE html>
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -42,7 +43,7 @@ $conn->close();
                 <form name="sign-up" action="" method="post" onsubmit="return signupValidation()">
                     <div class="signup-heading">
                         <img src="./../public/logo.png" width="250px" hieght="50px">
-                    
+
                     </div>
                     <?php 
 				if(!empty($registrationResponse["status"]))
@@ -82,7 +83,7 @@ $conn->close();
                             <input class="input-box-330" type="text" name="lastname" id="username">
                         </div>
                     </div>
-                    
+
                     <div class="row">
                         <div class="inline-block">
                             <div class="form-label">
@@ -94,7 +95,7 @@ $conn->close();
                     <div class="row">
                         <div class="inline-block ">
                             <div class="form-label">
-                               Y.O.B<span class="required error" id="username-info"></span>
+                                Y.O.B<span class="required error" id="username-info"></span>
                             </div>
                             <input class="input-box-330" type="date" name="yob" id="username" required>
                         </div>
@@ -117,6 +118,9 @@ $conn->close();
                     </div>
                     <div class="row">
                         <input class="sign-up-btn" type="submit" name="signup-btn" id="signup-btn" value="Sign up">
+                    </div>
+                    <div class="row">
+                        <a href="./../#">Back Home</a>
                     </div>
                 </form>
             </div>
