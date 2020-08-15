@@ -55,11 +55,15 @@ include ("./../database/config.php");
                             <div class="card">
                                 <div class="card-header text-center bg-info text-white">Make Appointment</div>
                                 <div class="card-body">
+
+                                <div class="alert alert-success alert-dismissible" id="success" style="display:none;">
+                                <a href="#" class="close" data-dismiss="alert" aria-label="close">x</a>
+                            </div>
                                     <form method="" action="" id="booking_form">
                                         <div class="form-row">
                                             <div class="form-group col-md-6">
-                                                <select class="form-control" id="sel_spec">
-                                                    <option value="0">- Select -</option>
+                                                <select class="form-control" id="sel_spec" required>
+                                                    <option value="">- Select -</option>
                                                     <?php
                                                     $sql="SELECT * FROM speciality";
                                                     $data= mysqli_query($conn,$sql);
@@ -76,8 +80,8 @@ include ("./../database/config.php");
                                             </div>
 
                                             <div class="form-group col-md-6">
-                                                <select class="form-control" id="sel_doc" name="sel_doc">
-                                                    <option value="0">- Select -</option>
+                                                <select class="form-control" id="sel_doc" name="sel_doc" required>
+                                                    <option value="" disabled>- Select -</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -88,14 +92,14 @@ include ("./../database/config.php");
                                         </div>
 
                                         <div class="form-group">
-                                            <select class="form-control" id="show">
-                                                <option value="0">- Select -</option>
+                                            <select class="form-control" id="show" required>
+                                                <option value="" disabled>- Kindly fill previous parts -</option>
                                             </select>
                                         </div>
 
                                         <?php
                                         $pid=$_SESSION['pid'];
-                                        echo '<input type="hidden" name="id" value="'.$pid.'">';
+                                        echo '<input type="hidden" id="pid" name="id" value="'.$pid.'">';
                                         ?>
 
 
@@ -150,6 +154,8 @@ include ("./../database/config.php");
 
     });
     </script>
+
+    <!-- Code to disable friday which is index[5] on jquey datepicker -->
     <script>
     var today = new Date();
     $("#datepicker").datepicker({
@@ -157,9 +163,10 @@ include ("./../database/config.php");
         dateFormat: 'yy-mm-dd',
         changeMonth: true,
         changeYear: true,
-        minDate: today
+        minDate: today 
     });
     </script>
+
     <script>
     $(document).ready(function() {
         $("#booking_form").submit(function(e) {
@@ -171,6 +178,8 @@ include ("./../database/config.php");
         });
     });
     </script>
+
+    <!-- Code to populate available slot option based on doctor id and date picked -->
     <script>
     $(document).ready(function() {
     
@@ -197,10 +206,53 @@ include ("./../database/config.php");
             });
         });
 
-
-
     });
     </script>
+
+
+    <!-- Booking script -->
+    <script>
+$(document).ready(function() {
+	$('#submit_btn').on('click', function() {
+		$("#submit_btn").attr("disabled", "disabled");
+		var pid = $('#pid').val();
+		var doctor = $('#sel_doc').val();
+		var slot = $('#show').val();
+		var date = $('#datepicker').val();
+		if(pid!="" && doctor!="" && slot!="" && date!=""){
+			$.ajax({
+				url: "bkappointment.php",
+				type: "POST",
+				data: {
+					pid: pid,
+					doctor_id: doctor,
+					slot_id: slot,
+					booking_date: date				
+				},
+				cache: false,
+				success: function(dataResult){
+                    // alert("doing great");
+					var dataResult = JSON.parse(dataResult);
+                    // alert("doing great");
+					if(dataResult.statusCode==200){
+						$("#submit_btn").removeAttr("disabled");
+						$('#booking_form').find('input:text').val('');
+						$("#success").show();
+						$('#success').html('Booked successfully !'); 						
+					}
+					else if(dataResult.statusCode==201){
+					   alert("Error occured !");
+					}
+					
+				}
+			});
+		}
+		else{
+			alert('Please fill all the field !');
+		}
+	});
+});
+</script>
 
 </body>
 
