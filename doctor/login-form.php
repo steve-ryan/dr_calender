@@ -1,35 +1,29 @@
 <?php
-
-//Starting session
-// session_start();
-
-     require('./../includes/connection.php');
+     include ("./../database/config.php");
      
-     if($stmt = $conn->prepare('SELECT doctor_id,doctor_password FROM doctor WHERE username= ?')){
+     if($stmt = $conn->prepare("SELECT doctor_id,password FROM doctor WHERE active ='1' AND firstname= ?")){
         $stmt->bind_param('s',$_POST['username']);
         $stmt->execute();
         //store result so we can check if account exists in db
         $stmt->store_result();
 
         if($stmt->num_rows > 0){
-            $stmt ->bind_result($admin_id, $admin_password);
+            $stmt ->bind_result($doctor_id, $doctor_password);
             $stmt->fetch();
 
-            if((md5($_POST['signup-password'])== $admin_password)){
+            if((md5($_POST['signup-password'])== $doctor_password)){
                 session_regenerate_id();
                 $_SESSION['loggedin'] = TRUE;
-                $_SESSION['name']= $_POST['username'];
-                $_SESSION['id'] = $admin_id;
-                // echo 'Welcome'.$_SESSION['name'].'!';
-            //    header('Location:./../admin/dashboard.php');
+                $_SESSION['drname']= $_POST['username'];
+                $_SESSION['drid'] = $doctor_id;
 
             }else{
-                $_SESSION['message'] = "Invalid username or password!!";
+                $_SESSION['message'] = "Invalid credentials or suspended!!";
                 
                 // echo 'Incorrect password!';
             }
-            if(isset($_SESSION["id"])){
-                header('Location:./../admin/dashboard.php');
+            if(isset($_SESSION["drid"])){
+                header('Location:./../doctor/dashboard.php');
             }
         }
 

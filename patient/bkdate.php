@@ -22,6 +22,3 @@ if(!empty(($_POST["sel_doc"]) && ($_POST["datepicker"]))){
 echo json_encode($slots_array);
 
 }
-else{
-  echo "Either you haven't filled all options or slots are full";
-}

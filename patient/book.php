@@ -62,7 +62,7 @@ include ("./../database/config.php");
                                     <form method="" action="" id="booking_form">
                                         <div class="form-row">
                                             <div class="form-group col-md-6">
-                                                <select class="form-control" id="sel_spec" required>
+                                                <select class="form-control" id="sel_spec">
                                                     <option value="">- Select -</option>
                                                     <?php
                                                     $sql="SELECT * FROM speciality";
@@ -80,8 +80,8 @@ include ("./../database/config.php");
                                             </div>
 
                                             <div class="form-group col-md-6">
-                                                <select class="form-control" id="sel_doc" name="sel_doc" required>
-                                                    <option value="" disabled>- Select -</option>
+                                                <select class="form-control" id="sel_doc" name="sel_doc">
+                                                    <option value="">- Select -</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -92,8 +92,8 @@ include ("./../database/config.php");
                                         </div>
 
                                         <div class="form-group">
-                                            <select class="form-control" id="show" required>
-                                                <option value="" disabled>- Kindly fill previous parts -</option>
+                                            <select class="form-control" id="show">
+                                                <option value="">- Kindly fill previous parts -</option>
                                             </select>
                                         </div>
 
@@ -185,8 +185,8 @@ include ("./../database/config.php");
     
         $("form").change(function(form) {
             $.ajax({
-                type: "POST",
                 url: "bkdate.php",
+                type: "post",
                 data: $(this).serialize(),
                 dataType: 'json',
                 success: function(result) {
@@ -198,8 +198,7 @@ include ("./../database/config.php");
                         var id = result[i]['slot_id'];
                         var name = result[i]['name'];
 
-                        $("#show").append("<option value='" + id + "'>" + name +
-                            "</option>");
+                        $("#show").append("<option value='"+id+"'>"+name+"</option>");
                     }
                     
                 }
