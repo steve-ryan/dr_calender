@@ -92,7 +92,7 @@ include ("./../database/config.php");
                                         </div>
 
                                         <div class="form-group">
-                                            <select class="form-control" id="show">
+                                            <select class="form-control" id="show" name="show">
                                                 <option value="">- Kindly fill previous parts -</option>
                                             </select>
                                         </div>
@@ -138,10 +138,10 @@ include ("./../database/config.php");
                     var len = response.length;
 
                     $("#sel_doc").empty();
-                    for (var i = 0; i < len; i++) {
-                        var id = response[i]['doctor_id'];
-                        var name = response[i]['firstname'];
-                        var lname = response[i]['lastname'];
+                    for (var j = 0; j < len; j++) {
+                        var id = response[j]['doctor_id'];
+                        var name = response[j]['firstname'];
+                        var lname = response[j]['lastname'];
 
                         $("#sel_doc").append("<option value='" + id + "'>" + name + ' ' +
                             lname +
@@ -183,10 +183,10 @@ include ("./../database/config.php");
     <script>
     $(document).ready(function() {
     
-        $("form").change(function(form) {
+        $("form").click(function(form) {
             $.ajax({
-                url: "bkdate.php",
                 type: "post",
+                url: "bkdate.php",
                 data: $(this).serialize(),
                 dataType: 'json',
                 success: function(result) {
@@ -198,7 +198,7 @@ include ("./../database/config.php");
                         var id = result[i]['slot_id'];
                         var name = result[i]['name'];
 
-                        $("#show").append("<option value='"+id+"'>"+name+"</option>");
+                        $('#show').append("<option value='"+id+"'>"+name+"</option>");
                     }
                     
                 }
@@ -230,7 +230,6 @@ $(document).ready(function() {
 				},
 				cache: false,
 				success: function(dataResult){
-                    // alert("doing great");
 					var dataResult = JSON.parse(dataResult);
                     // alert("doing great");
 					if(dataResult.statusCode==200){

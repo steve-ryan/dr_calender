@@ -68,6 +68,24 @@ include ("./../database/config.php");
             }
         });
     });
+
+    //cancel button
+        $(document).on("click", ".cancel", function() {
+            var $ele = $(this).parent().parent();
+            $.ajax({
+                url: "cancelbooking.php",
+                type: "POST",
+                data: {
+                    booking_id: $(this).attr("data-id")
+                },
+                success: function(dataResult) {
+                    if (dataResult == 0) {
+                        $('#sts' + booking_id).html('Canceled').css('color', 'red');
+                    }
+                    location.reload(true);
+                }
+            });
+        });
     </script>
 </body>
 

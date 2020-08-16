@@ -20,7 +20,7 @@
     if ($row['status']== 1) {
         echo "<p id=sts".$row['status']." style='color:green'>Active</p>";
     } else {
-    echo "<p id=id=sts".$row['status']." style='color:red'>Cancelled</p>";
+    echo "<p id=sts".$row['status']." style='color:red'>Canceled</p>";
     }
     ?>
     </td>

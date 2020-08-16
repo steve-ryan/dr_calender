@@ -15,17 +15,32 @@
     <td><?=$row['plastname'];?></td>
     <td><?=$row['email'];?></td>
     <td>
-    <?php
+        <?php
 
     if ($row['status']== 1) {
         echo "<p id=sts".$row['status']." style='color:green'>Active</p>";
     } else {
-    echo "<p id=id=sts".$row['status']." style='color:red'>Cancelled</p>";
+    echo "<p id=id=sts".$row['status']." style='color:red'>Canceled</p>";
     }
     ?>
     </td>
-   
-    <td><button type="button" class="btn btn-danger btn-sm delete" data-id=<?=$row['booking_id'];?>>Cancel</button></td>
+
+    <td>
+        <div class="visible-md visible-lg hidden-sm hidden-xs">
+            <?php if(($row['status']==1))  
+{ ?>
+ 
+            <a href="#" class="text-danger cancel"
+                onClick="return confirm('Are you sure you want to cancel this appointment ?')"
+                class="btn btn-transparent btn-xs tooltips" title="Cancel Appointment" tooltip-placement="top"
+                tooltip="Remove" data-id=<?=$row['booking_id'];?>>Cancel</a>
+            <?php } else {
+
+		echo "<p id=sts".$row['status']." style='color:black'>Canceled</p>";
+		} ?>
+
+        </div>
+    </td>
 </tr>
 <?php	
 	}

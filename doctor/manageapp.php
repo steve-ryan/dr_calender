@@ -21,11 +21,13 @@ include ("./../database/config.php");
         <?php
     include ('./../includes/sidebars/doctor_sidebar.php');
     ?>
-        <main class="main"  style="background-image: url(./../public/doctor_appointment_codecanyon_banner.jpg); background-blend-mode: multiply; background-image:linear-gradient(to top,#CCFFCC,#CCCCCC); background-repeat: repeat; background-attachment: auto width:100%">
+        <main class="main"
+            style="background-image: url(./../public/doctor_appointment_codecanyon_banner.jpg); background-blend-mode: multiply; background-image:linear-gradient(to top,#CCFFCC,#CCCCCC); background-repeat: repeat; background-attachment: auto width:100%">
             <div class="main_overview">
                 <div class="col-md-12">
                     <div class="card border-info">
-                        <div class="card-header text-black h-100 no-radius text-center  border-success"> Manage Appointments
+                        <div class="card-header text-black h-100 no-radius text-center  border-success"> Manage
+                            Appointments
                         </div>
 
                         <div class="card-body ">
@@ -67,8 +69,25 @@ include ("./../database/config.php");
                 $('#mappointments').html(dataResult);
             }
         });
+        //cancel button
+        $(document).on("click", ".cancel", function() {
+            var $ele = $(this).parent().parent();
+            $.ajax({
+                url: "cancelbooking.php",
+                type: "POST",
+                data: {
+                    booking_id: $(this).attr("data-id")
+                },
+                success: function(dataResult) {
+                    if (dataResult == 0) {
+                        $('#sts' + booking_id).html('Cancelled').css('color', 'red');
+                    }
+                }
+            });
+        });
     });
     </script>
+
 </body>
 
 </html>

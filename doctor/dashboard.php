@@ -1,4 +1,4 @@
-<?php require("./../includes/patient_check.php");
+<?php require("./../includes/doctor_check.php");
 include ("./../database/config.php");
 ?>
 <!DOCTYPE html>
@@ -41,7 +41,7 @@ include ("./../database/config.php");
                                                 <th scope="col">Status</th>
                                             </tr>
                                         </thead>
-                                        <tbody id="todayapp-table">
+                                        <!-- <tbody id="todayapp-table"> -->
 
 
                                         </tbody>
@@ -61,13 +61,15 @@ include ("./../database/config.php");
                                         </div>
                                         <div class="col-auto h5 mb-0 font-weight-bold text-white">
                                             <?php
-                                                    $drid=$_SESSION['drid'];
-                                                    $bookings = "SELECT count('booking_id') FROM appointment WHERE doctor_id='$drid'";
-                                                    $result=mysqli_query($conn,$bookings);
-                                                    $row=mysqli_fetch_array($result);
-                                                    echo "$row[0]";
-                                                    mysqli_close($conn);
-                                                    ?>
+                                                    // $drid=$_SESSION['drid'];
+                                                    // $bookings = "SELECT count('booking_id') FROM appointment WHERE doctor_id='$drid'";
+                                                    // $result=mysqli_query($conn,$bookings);
+                                                    // $row=mysqli_fetch_array($result);
+                                                    // echo "$row[0]";
+                                                    // mysqli_close($conn);
+
+                                                    echo "hello";
+                                             ?>
                                         </div>
                                     </div>
                                 </div>
