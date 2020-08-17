@@ -1,5 +1,5 @@
 <?php 
-include ('./../includes/admin_check.php');
+include ('./../includes/patient_check.php');
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -19,7 +19,7 @@ include ('./../includes/admin_check.php');
         <?php
 
     // session_start();
-    include ('./../includes/sidebars/admin_sidebar.php');
+    include ('./../includes/sidebars/patient_sidebar.php');
     include ("./../database/config.php");
     ?>
 
@@ -63,8 +63,8 @@ include ('./../includes/admin_check.php');
                                                 name="newPassword">
                                         </div>
                                         <?php
-                                        $id=$_SESSION['admin_id'];
-                                        echo '<input type="hidden" id="id" name="id" value="'.$id.'">';
+                                        $pid=$_SESSION['pid'];
+                                        echo '<input type="hidden" id="id" name="id" value="'.$pid.'">';
                                         ?>
                                         <div class="form-group">
                                             <label for="new_password_confirmation"><strong>Confirm New
@@ -119,6 +119,9 @@ include ('./../includes/admin_check.php');
                         $('#error').html('Old password not matching !').delay(3000).fadeOut(
                             3000);
                     }
+                    // console.log('idiot');
+                    //$('#message').html(data).delay(3000).fadeOut(3000);
+                }
             });
         });
     });

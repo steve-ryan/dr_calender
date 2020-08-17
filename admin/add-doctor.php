@@ -152,9 +152,11 @@ include ("./../database/config.php");
                     }
                 });
             }else if(password!=confirmPwd){
-               alert('Password not matching');
+                $("#error").show();
+                $('#error').html('Password not matching !').delay(3000).fadeOut(3000);
             } else {
-                alert('Please fill all the field !');
+                 $("#error").show();
+                 $('#error').html('Please fill all the field  !').delay(3000).fadeOut(3000);
             }
         });
 

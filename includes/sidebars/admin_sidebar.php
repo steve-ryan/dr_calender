@@ -21,12 +21,7 @@
             <li class="aside_list-item"><a class="text-white text-decoration-none"  href="./../admin/add-speciality.php">Specialization</a></li>
             <li class="aside_list-item"><a class="text-white text-decoration-none"  href="./../admin/manage-patient.php">Patients</a></li>
             <li class="aside_list-item"><a class="text-white text-decoration-none"  href="./../admin/appointment-history.php">Appointments</a></li>
-            <li class="aside_list-item">Profile
-                <ul class="subitem">
-                    <li><a class="text-white" href="./../admin/appointment-history.php">Settings</a></li>
-                    <li><a class="text-white" href="./../admin/changepwd.php">Change Password</a></li>
-                </ul>
-            </li>
+            <li class="aside_list-item"><a class="text-white text-decoration-none"  href="./../admin/changepwd.php">Password settings</a></li>
             <li class="aside_list-item"><a class="text-white confirmation" href="./../admin/logout.php">Logout</a></li>
         </ul>
     </aside>

@@ -19,7 +19,6 @@
         <main class="main">
             <div class="main_overview">
                 <div class="col-md-12">
-                    <!-- <div class="row"> -->
                     <div class="card">
                         <div class="card-header text-center bg-light text-success">Appointment History</div>
                         <div class="card-body">

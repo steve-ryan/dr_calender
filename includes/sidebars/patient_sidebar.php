@@ -14,6 +14,7 @@
         <ul class="aside_list">
             <li class="aside_list-item"><a class="text-white" href="./../patient/dashboard.php">Home</a></li>
             <li class="aside_list-item"><a class="text-white" href="./../patient/book.php">Book</a></li>
+                        <li class="aside_list-item"><a class="text-white text-decoration-none"  href="./../patient/changepwd.php">Password settings</a></li>
             <li class="aside_list-item"><a class="text-white confirmation" href="./../patient/logout.php">Logout</a></li>
         </ul>
 

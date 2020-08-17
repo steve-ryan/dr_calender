@@ -15,6 +15,7 @@
 
             <li class="aside_list-item"><a class="text-white" href="./../doctor/dashboard.php">Home</a></li>
             <li class="aside_list-item"><a class="text-white" href="./../doctor/manageapp.php">Manage</a></li>
+                        <li class="aside_list-item"><a class="text-white text-decoration-none"  href="./../doctor/changepwd.php">Password settings</a></li>
             <li class="aside_list-item"><a class="text-white confirmation" href="./../doctor/logout.php">Logout</a></li>
         </ul>
         </li>
