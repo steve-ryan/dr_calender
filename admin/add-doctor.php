@@ -89,15 +89,13 @@ include ("./../database/config.php");
                                             name="password" value="" minlength="6" required>
                                     </div>
                                     <div class="form-group  col-md-4">
-                                        <label for="email"><strong>Password:</strong></label>
+                                        <label for="email"><strong>Confirm Password:</strong></label>
                                         <input type="password" class="form-control border-success" id="confirmpassword"
                                             name="confirmpassword" value="" minlength="6" required>
                                     
                                     </div>
-                                    <div class="form-group  col-md-4">
-                                    <div class="registrationFormAlert" style="color:orange;" id="checkPasswordMatch">
-                                    </div>
                                 </div>
+                                   <p class="alert" style="color:red;" id="CheckPasswordMatch"></p>
                                 <button class="btn btn-primary" type="submit" id="submit">Submit</button>
                             </form>
                         </div>
@@ -122,10 +120,11 @@ include ("./../database/config.php");
             var speciality = $('#speciality').val();
             var email = $('#email').val();
             var password = $('#password').val();
-            // var confirmPwd = $("#confirmpassword").val();
+            var confirmPwd = $("#confirmpassword").val();
+            // var password == var confirmPwd;
 
             if (firstname != "" && lastname != "" && speciality != "" && email != "" && password !=
-                "") {
+                "" && password==confirmPwd) {
                 $.ajax({
                     url: "register-doc.php",
                     type: "POST",
@@ -140,26 +139,38 @@ include ("./../database/config.php");
                     success: function(dataResult) {
                         var dataResult = JSON.parse(dataResult);
                         if (dataResult.statusCode == 200) {
-                            console.log("hello");
                             $('#submit').removeAttr("disabled");
-                            // $('#fupForm').find('input:text').val('');
                             $('#fupForm')[0].reset();
                             $("#success").show();
-                            $('#success').html('Doctor added successfully !');
+                            $('#success').html('Doctor added successfully !').delay(3000).fadeOut(3000);
                         
                         } else if (dataResult.statusCode == 201) {
-                            // alert("Error occured !");
                             $("#error").show();
-                            $('#error').html('Email ID already exists !');
+                            $('#error').html('Email ID already exists !').delay(3000).fadeOut(3000);
                         }
 
                     }
                 });
+            }else if(password!=confirmPwd){
+               alert('Password not matching');
             } else {
                 alert('Please fill all the field !');
             }
         });
 
+    });
+    </script>
+     <script>
+    function checkPasswordMatch() {
+        var password = $("#password").val();
+        var confirmPassword = $("#confirmpassword").val();
+        if (password != confirmPassword)
+            $("#CheckPasswordMatch").html("Passwords does not match!").css('color', 'red');
+        else
+            $("#CheckPasswordMatch").html("Passwords match.").css('color', 'green');
+    }
+    $(document).ready(function () {
+       $("#confirmpassword").keyup(checkPasswordMatch);
     });
     </script>
   

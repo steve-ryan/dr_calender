@@ -21,11 +21,11 @@
             <div class="main_overview">
 
                 <div class="col-md-12">
-                    <div class="alert alert-success alert-dismissible" id="success" style="display:none;">
+                    <div class="alert alert-success alert-dismissible text-center" id="success" style="display:none;">
                         <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
 
                     </div>
-                    <div class="alert alert-danger alert-dismissible" id="error" style="display:none;">
+                    <div class="alert alert-danger alert-dismissible text-center" id="error" style="display:none;">
                         <a href="#" class="close" data-dismiss="alert" aria-label="close">x</a>
                     </div>
                     <form action="" method="post" id="fupForm">
@@ -125,11 +125,11 @@
                                 $('#fupForm').find('input:text').val('');
                                 $("#success").show();
                                 $('#success').html(
-                                    'Speciality added successfully !');
+                                    'Speciality added successfully !').delay(3000).fadeOut(3000);
                             } else if (dataResult.statusCode == 201) {
                                 // alert("Error occured !");
                                 $("#error").show();
-                                $('#error').html('Speciality already exists !');
+                                $('#error').html('Speciality already exists !').delay(3000).fadeOut(3000);
                             }
 
                         }

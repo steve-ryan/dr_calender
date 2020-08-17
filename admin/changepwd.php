@@ -21,28 +21,6 @@ include ('./../includes/admin_check.php');
     // session_start();
     include ('./../includes/sidebars/admin_sidebar.php');
     include ("./../database/config.php");
-
-    //change password script
-    if(isset($_POST['submit']))
-            {
-             $oldpass=md5($_POST['currentPassword']);
-            $_SESSION['name'];
-             $newpassword=md5($_POST['newPassword']);
-             $sql=mysqli_query($conn,"SELECT password FROM admin WHERE password='$oldpass' && username ='".$_SESSION['name']."'");
-             $num=mysqli_fetch_array($sql);
-             if($num>0)
-             {
-                 $conn=mysqli_query($conn,"UPDATE admin SET password=' $newpassword' where username ='".$_SESSION['name']."'");
-                 $_SESSION['success']="Password Changed Successfully !!";
-                }
-                else
-                {
-                    $_SESSION['danger']="Old Password not match !!";
-                }
-            }
-            
-echo $_SESSION['name'];
-// echo $admin_id;
     ?>
 
         <main class="main" style="background-image:linear-gradient(to top,#CCFFCC,#CCCCCC);">
@@ -56,24 +34,20 @@ echo $_SESSION['name'];
 
                         <div class="col-md-12">
                             <div class="card">
-
-                                <div class="alert alert-success alert-dismissible"  style="display:none;">
-                                    <a href="#" class="close" data-dismiss="alert"
-                                        aria-label="close"><?php echo $_SESSION['success'];?>x</a>
-                                </div>
-
-                                <div class="alert alert-danger alert-dismissible"  style="display:none;">
-                                <?php echo $_SESSION['danger'];?>
-                                    <a href="#" class="close" data-dismiss="alert"
-                                        aria-label="close"><?php echo $_SESSION['danger'];?>x</a>
-                                </div>
                                 <div class="card-header text-black h-100 no-radius text-center"><strong>Change
                                         Password</strong></div>
+                                        <div class="alert alert-success alert-dismissible text-center" id="success" style="display:none;">
+                                <a href="#" class="close" data-dismiss="alert" aria-label="close">x</a>
+                            </div>
+
+                            <div class="alert alert-danger alert-dismissible" id="error" style="display:none;">
+                                <a href="#" class="close" data-dismiss="alert" aria-label="close">x</a>
+                            </div>
 
                                 <div class="card-body">
+                                     <div id="message"></div>
 
-
-                                    <form name="frmChange" method="post" action=""
+                                    <form name="frmChange" method="post" action="" id="resetform"
                                         onSubmit="return validatePassword();">
 
                                         <div class="form-group">
@@ -86,13 +60,18 @@ echo $_SESSION['name'];
                                             <input type="password" class="form-control" id="newPassword"
                                                 name="newPassword">
                                         </div>
+                                        <?php
+                                        $id=$_SESSION['admin_id'];
+                                        echo '<input type="hidden" id="id" name="id" value="'.$id.'">';
+                                        ?>
                                         <div class="form-group">
                                             <label for="new_password_confirmation"><strong>Confirm New
                                                     Password:</strong></label>
                                             <input type="password" class="form-control" id="confirmPassword"
                                                 name="confirmPassword">
                                         </div>
-                                        <button class="btn btn-primary" type="submit">Change Password</button>
+                                        <div class="alert" style="color:red;" id="CheckPasswordMatch"></div>
+                                          <input type="submit" class="btn btn-warning" name="password_change" id="submit_btn" value="Change Password" />
                                     </form>
                                 </div>
                             </div>
@@ -103,12 +82,47 @@ echo $_SESSION['name'];
         </main>
     </div>
     <script src="./../assets/js/main.js" type="text/javascript"></script>
-    <script src="./../assets/js/main.js" type="text/javascript"></script>
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="./../assets/js/jquery.js"></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="./../assets/js/popper.min.js"></script>
     <script src="./../assets/js/bootstrap-4.3.1.js"></script>
+    <script>
+    $(document).ready(function() {
+    var frm = $('#resetform');
+    frm.submit(function(e){
+        e.preventDefault();
+
+        var formData = frm.serialize();
+        formData += '&' + $('#submit_btn').attr('name') + '=' + $('#submit_btn').attr('value');
+        $.ajax({
+            type: "POST",
+            url: "passchange.php",
+            data: formData,
+            success: function(data){
+                var data = JSON.parse(data);
+                if(data.statusCode==200){
+                    $("#success").show();
+                    $('#success').html('Password updated !').delay(3000).fadeOut(3000);
+                }
+                // console.log('idiot');
+                //$('#message').html(data).delay(3000).fadeOut(3000);
+            }
+        });
+    });
+});
+    </script>
+     <script>
+    function checkPasswordMatch() {
+        var password = $("#newPassword").val();
+        var confirmPassword = $("#confirmPassword").val();
+        if (password != confirmPassword)
+            $("#CheckPasswordMatch").html("Passwords does not match!");
+        else
+            $("#CheckPasswordMatch").html("Passwords match.");
+    }
+    $(document).ready(function () {
+       $("#confirmPassword").keyup(checkPasswordMatch);
+    });
+    </script>
 </body>
 </body>
 
